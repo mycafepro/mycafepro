@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MY Cafe Pro | One Stop Digital Service Center</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Exo+2:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #05050D;
+      --card: #0C0C18;
+      --card2: #10101E;
+      --blue: #0A66FF;
+      --gold: #F5B042;
+      --cyan: #00D4FF;
+      --glow-blue: rgba(10,102,255,0.55);
+      --glow-gold: rgba(245,176,66,0.45);
+      --border: #1C1C2E;
+      --text: #D8D8E8;
+      --muted: #888899;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Exo 2', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    h1,h2,h3,h4 { font-family: 'Rajdhani', sans-serif; font-weight: 700; }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+    /* =================== HEADER =================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(5,5,13,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 24px;
+      gap: 16px;
+    }
+    /* LOGO */
+    .logo-area { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .logo-badge {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0A0A1A, #141428);
+      border: 1.5px solid var(--gold);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      box-shadow: 0 0 14px var(--glow-gold), inset 0 0 8px rgba(245,176,66,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-badge::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: conic-gradient(transparent 270deg, rgba(245,176,66,0.15) 360deg);
+      animation: rotate 4s linear infinite;
+    }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+    .logo-badge i { font-size: 1.5rem; color: var(--gold); position: relative; z-index: 1; }
+    .logo-text { position: relative; z-index: 1; }
+    .cyber-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-shadow: 0 0 8px var(--gold);
+      line-height: 1;
+    }
+    .brand-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 40%, var(--gold));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+    .nav-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .nav-links a {
+      color: #ccc; text-decoration: none; font-weight: 500; font-size: 0.92rem;
+      padding: 6px 12px; border-radius: 8px; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .neon-btn {
+      background: linear-gradient(135deg, #0A66FF, #0047b3);
+      border: none; color: white; font-weight: 700;
+      padding: 9px 20px; border-radius: 30px; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      transition: all 0.3s; box-shadow: 0 0 10px rgba(10,102,255,0.35);
+      font-family: 'Exo 2', sans-serif; font-size: 0.9rem;
+    }
+    .neon-btn:hover { transform: translateY(-2px); box-shadow: 0 0 22px var(--blue); }
+    .whatsapp-nav-btn {
+      background: #25D366; color: white; font-weight: 700;
+      padding: 9px 18px; border-radius: 30px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 0.88rem; transition: 0.3s;
+    }
+    .whatsapp-nav-btn:hover { background: #1ebe5a; transform: translateY(-2px); }
+
+    /* =================== HERO =================== */
+    .hero {
+      padding: 80px 0 60px;
+      background: radial-gradient(ellipse at 15% 40%, rgba(10,102,255,0.09) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(245,176,66,0.06) 0%, transparent 55%),
+                  #05050D;
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: 'CYBER CAFE';
+      position: absolute; bottom: -10px; right: -10px;
+      font-family: 'Rajdhani', sans-serif; font-size: 10rem; font-weight: 700;
+      color: rgba(10,102,255,0.04); line-height: 1; pointer-events: none;
+      letter-spacing: 0.05em;
+    }
+    .hero-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 50px; }
+    .hero-content { flex: 1; min-width: 280px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(10,102,255,0.12); border: 1px solid rgba(10,102,255,0.3);
+      padding: 5px 16px; border-radius: 30px;
+      color: var(--cyan); font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.1em; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: 3.4rem; line-height: 1.05;
+      background: linear-gradient(135deg, #ffffff 30%, var(--gold) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      margin-bottom: 18px;
+    }
+    .hero p { font-size: 1.15rem; color: #9090A8; line-height: 1.65; margin-bottom: 30px; }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), #d4890c);
+      color: #000; font-weight: 800; padding: 13px 30px; border-radius: 40px;
+      text-decoration: none; transition: 0.3s; font-size: 1rem;
+      box-shadow: 0 0 16px var(--glow-gold);
+    }
+    .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 0 28px var(--glow-gold); }
+    .btn-outline {
+      background: transparent; border: 1.5px solid var(--blue);
+      color: #99bbff; padding: 13px 30px; border-radius: 40px;
+      text-decoration: none; transition: 0.3s; font-size: 1rem;
+    }
+    .btn-outline:hover { background: rgba(10,102,255,0.12); box-shadow: 0 0 14px rgba(10,102,255,0.4); }
+    .icon-badges { display: flex; gap: 14px; flex-wrap: wrap; }
+    .icon-badge {
+      background: rgba(12,12,24,0.8);
+      border: 1px solid #252535;
+      padding: 9px 18px; border-radius: 40px;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.88rem; font-weight: 500; backdrop-filter: blur(4px);
+    }
+    .icon-badge i { color: var(--blue); }
+    .hero-visual {
+      flex: 0.85; text-align: center; position: relative;
+    }
+    .hero-visual img {
+      max-width: 100%; border-radius: 28px;
+      box-shadow: 0 0 50px rgba(10,102,255,0.2), 0 0 100px rgba(10,102,255,0.07);
+    }
+
+    /* =================== SECTION STYLES =================== */
+    section { padding: 70px 0; }
+    .section-title {
+      font-size: 2.3rem; margin-bottom: 45px;
+      border-left: 5px solid var(--gold); padding-left: 20px;
+      letter-spacing: 0.01em;
+    }
+    .section-title span { color: var(--gold); }
+
+    /* =================== SERVICES GRID =================== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 22px;
+    }
+    .service-card {
+      background: var(--card);
+      border-radius: 20px; padding: 26px 18px;
+      border: 1px solid var(--border);
+      text-align: center; cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-7px);
+      border-color: var(--blue);
+      box-shadow: 0 20px 40px -15px rgba(10,102,255,0.3);
+    }
+    .service-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 14px; transition: 0.2s; }
+    .service-card:hover .service-icon { text-shadow: 0 0 14px var(--gold); }
+    .service-card h3 { font-size: 1rem; margin-bottom: 6px; color: #fff; }
+    .service-card p { font-size: 0.8rem; color: var(--muted); }
+
+    /* =================== FINTECH SECTION =================== */
+    .fintech-section { background: linear-gradient(135deg, #07071A, #0A0A18); }
+    .fintech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .fintech-card {
+      background: linear-gradient(135deg, #0C0C20, #10102A);
+      border-radius: 22px; padding: 28px 22px;
+      border: 1px solid rgba(10,102,255,0.2);
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .fintech-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+    }
+    .fintech-card:hover { transform: translateY(-6px); border-color: var(--blue); box-shadow: 0 15px 35px -10px rgba(10,102,255,0.3); }
+    .fintech-card .card-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .fintech-card h3 { font-size: 1.1rem; color: #fff; margin-bottom: 10px; }
+    .fintech-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .fintech-card .tag {
+      display: inline-block; margin-top: 12px;
+      background: rgba(10,102,255,0.15); color: var(--cyan);
+      padding: 3px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+    }
+
+    /* =================== EGOVERNANCE =================== */
+    .egovt-section { background: linear-gradient(135deg, #050510, #080818); }
+    .egovt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 22px;
+    }
+    .egovt-card {
+      background: var(--card2);
+      border-radius: 20px; padding: 26px 20px;
+      border: 1px solid rgba(245,176,66,0.15);
+      transition: 0.3s; position: relative; overflow: hidden;
+    }
+    .egovt-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), #ffdd88);
+    }
+    .egovt-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 15px 35px -10px rgba(245,176,66,0.25); }
+    .egovt-card .egovt-icon { font-size: 2.3rem; margin-bottom: 14px; color: var(--gold); }
+    .egovt-card h3 { font-size: 1rem; color: #fff; margin-bottom: 8px; }
+    .egovt-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .egovt-badge {
+      display: inline-block; margin-top: 10px;
+      background: rgba(245,176,66,0.12); color: var(--gold);
+      padding: 3px 12px; border-radius: 20px; font-size: 0.74rem; font-weight: 600;
+    }
+
+    /* =================== WHY CHOOSE =================== */
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 24px;
+    }
+    .why-card {
+      background: rgba(12,12,24,0.8);
+      border-radius: 24px; padding: 30px 24px;
+      text-align: center; border-bottom: 2px solid var(--blue);
+      backdrop-filter: blur(4px);
+    }
+    .why-card i { font-size: 2.6rem; color: var(--blue); margin-bottom: 16px; display: block; }
+    .why-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: #fff; }
+    .why-card p { font-size: 0.85rem; color: var(--muted); }
+    .counter-bar {
+      display: flex; justify-content: space-around; flex-wrap: wrap;
+      gap: 30px; background: #080810; border-radius: 60px;
+      padding: 32px; margin-top: 50px;
+    }
+    .counter-item { text-align: center; }
+    .counter-number { font-size: 2.8rem; font-weight: 800; color: var(--gold); font-family: 'Rajdhani', sans-serif; }
+
+    /* =================== FORMS =================== */
+    .form-box {
+      background: #08080F;
+      border-radius: 28px; padding: 38px;
+      border: 1px solid #202030;
+      box-shadow: 0 20px 40px -10px black;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; margin-bottom: 8px; font-size: 0.88rem; color: #aaa; font-weight: 600; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 13px 18px;
+      background: #111120; border: 1px solid #2a2a3a;
+      border-radius: 14px; color: white; font-size: 0.95rem;
+      font-family: 'Exo 2', sans-serif;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--blue); box-shadow: 0 0 10px rgba(10,102,255,0.3);
+    }
+    .form-group select option { background: #111120; }
+    .upload-zone {
+      border: 1.5px dashed var(--gold); border-radius: 14px;
+      padding: 16px; text-align: center; cursor: pointer;
+    }
+    .upload-zone input { display: none; }
+    .upload-zone label { cursor: pointer; color: #aaa; font-size: 0.88rem; }
+    .submit-btn {
+      width: 100%; padding: 15px;
+      background: linear-gradient(135deg, #0A66FF, #0047b3);
+      border: none; color: white; font-size: 1.05rem; font-weight: 700;
+      border-radius: 40px; cursor: pointer;
+      font-family: 'Rajdhani', sans-serif; letter-spacing: 0.05em;
+      transition: 0.3s; box-shadow: 0 0 14px rgba(10,102,255,0.35);
+    }
+    .submit-btn:hover { box-shadow: 0 0 28px var(--blue); transform: translateY(-2px); }
+    .submit-btn-gold {
+      background: linear-gradient(135deg, var(--gold), #c47a0b);
+      color: #000; box-shadow: 0 0 14px var(--glow-gold);
+    }
+    .submit-btn-gold:hover { box-shadow: 0 0 28px var(--glow-gold); }
+    .success-msg {
+      background: #0a2a1a; padding: 14px 20px;
+      border-radius: 30px; color: #4dffaa; text-align: center;
+      border: 1px solid rgba(77,255,170,0.25); margin-top: 16px;
+      font-weight: 600; display: none;
+    }
+    .error-msg {
+      background: #2a0a0a; padding: 14px 20px;
+      border-radius: 30px; color: #ff6666; text-align: center;
+      border: 1px solid rgba(255,100,100,0.25); margin-top: 16px;
+      font-weight: 600; display: none;
+    }
+    .star-rating { display: flex; gap: 8px; margin-bottom: 4px; }
+    .star-rating input { display: none; }
+    .star-rating label { font-size: 1.8rem; cursor: pointer; color: #444; transition: color 0.1s; }
+    .star-rating input:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label { color: var(--gold); }
+    .star-rating { flex-direction: row-reverse; }
+    .star-rating label:hover, .star-rating label:hover ~ label,
+    .star-rating input:checked ~ label { color: var(--gold); text-shadow: 0 0 8px var(--gold); }
+
+    /* =================== TESTIMONIALS =================== */
+    .testimonial-slide {
+      background: var(--card); padding: 28px;
+      border-radius: 24px; text-align: center;
+      border: 1px solid #252535;
+    }
+    .testimonial-slide .stars { color: var(--gold); font-size: 1.1rem; margin: 10px 0; }
+    .testimonial-slide p { font-size: 0.95rem; line-height: 1.65; color: #ccc; margin: 12px 0; }
+    .testimonial-slide h4 { color: var(--gold); font-size: 0.95rem; }
+    .testimonial-slide .service-tag {
+      display: inline-block; background: rgba(10,102,255,0.15);
+      color: var(--cyan); padding: 3px 12px; border-radius: 20px;
+      font-size: 0.76rem; margin-top: 8px;
+    }
+    .swiper-pagination-bullet-active { background: var(--gold) !important; }
+
+    /* =================== CONTACT & MAP =================== */
+    .contact-info-item { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .contact-icon-wrap {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(10,102,255,0.15); border: 1px solid rgba(10,102,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon-wrap i { color: var(--blue); font-size: 1.1rem; }
+    .contact-icon-wrap.gold-wrap { background: rgba(245,176,66,0.12); border-color: rgba(245,176,66,0.3); }
+    .contact-icon-wrap.gold-wrap i { color: var(--gold); }
+    .contact-icon-wrap.green-wrap { background: rgba(37,211,102,0.12); border-color: rgba(37,211,102,0.3); }
+    .contact-icon-wrap.green-wrap i { color: #25D366; }
+    .map-frame { width: 100%; height: 250px; border-radius: 22px; border: 0; }
+
+    /* =================== FOOTER =================== */
+    footer { background: #02020A; padding: 50px 0 20px; border-top: 1px solid #161622; }
+    .footer-grid { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+    .footer-col h4 { color: var(--gold); margin-bottom: 16px; font-size: 1rem; letter-spacing: 0.05em; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { color: #888; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-col p { color: #666; font-size: 0.85rem; line-height: 1.6; }
+    .social-links { display: flex; gap: 14px; margin-top: 8px; }
+    .social-links a {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: #0C0C1A; border: 1px solid #252535;
+      display: flex; align-items: center; justify-content: center;
+      color: #888; font-size: 1.15rem; text-decoration: none;
+      transition: 0.3s;
+    }
+    .social-links a:hover { border-color: var(--blue); color: var(--blue); box-shadow: 0 0 10px rgba(10,102,255,0.3); }
+    .footer-bottom { border-top: 1px solid #111122; margin-top: 40px; padding-top: 20px; text-align: center; color: #444; font-size: 0.85rem; }
+
+    /* =================== WHATSAPP FLOAT =================== */
+    .whatsapp-float {
+      position: fixed; bottom: 28px; right: 28px;
+      background: #25D366; width: 62px; height: 62px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: white; z-index: 99;
+      box-shadow: 0 4px 22px rgba(37,211,102,0.4);
+      text-decoration: none; transition: 0.3s;
+      animation: pulse-wa 2.5s infinite;
+    }
+    @keyframes pulse-wa {
+      0%,100% { box-shadow: 0 4px 22px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 40px rgba(37,211,102,0.7); }
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+
+    /* =================== MISC =================== */
+    .tab-btns { display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; }
+    .tab-btn {
+      padding: 10px 22px; border-radius: 30px;
+      border: 1.5px solid #252535; background: transparent;
+      color: #888; cursor: pointer; font-weight: 600;
+      font-family: 'Exo 2', sans-serif; font-size: 0.9rem; transition: 0.3s;
+    }
+    .tab-btn.active { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: 0 0 14px rgba(10,102,255,0.4); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    @media (max-width: 800px) {
+      .hero h1 { font-size: 2.2rem; }
+      .section-title { font-size: 1.75rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero-visual { display: none; }
+    }
+
+    /* Animate on scroll */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Section divider */
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0; }
+  </style>
+</head>
+<body>
+
+<!-- =================== HEADER =================== -->
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo-area">
+      <div class="logo-badge" style="overflow:hidden; background:transparent; border:2px solid var(--gold); box-shadow:0 0 14px var(--glow-gold); width:60px; height:60px; padding:2px;">
+        <img src="https://raw.githubusercontent.com/mycafepro/mycafepro/main/MY%20CAFE%20PRO%20Logo.png" alt="MY Cafe Pro" style="width:100%; height:100%; object-fit:contain; border-radius:10px;" onerror="this.outerHTML='<i class=&quot;fas fa-desktop&quot; style=&quot;font-size:1.6rem;color:var(--gold);&quot;></i>'">
+      </div>
+      <div class="logo-text">
+        <div class="cyber-text">CYBER CAFE</div>
+        <div class="brand-name">MY Cafe Pro</div>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#fintech">Fintech</a>
+      <a href="#egovt">eGovernance</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Contact</a>
+      <a href="#request" class="neon-btn">📋 Request</a>
+      <a href="https://wa.me/919872452167?text=Hello%20MY%20Cafe%20Pro%2C%20I%20need%20help%20with%20your%20services." target="_blank" class="whatsapp-nav-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- =================== HERO =================== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content fade-up">
+      <div class="hero-eyebrow"><i class="fas fa-circle-dot" style="color:var(--cyan); animation: blink 1.2s infinite;"></i> LUDHIANA'S PREMIER DIGITAL CENTER</div>
+      <h1>One Stop Digital Service Center</h1>
+      <p>Fast & reliable online services – Printing, Government Schemes, Fintech, eGovernance & More – all under one roof.</p>
+      <div class="hero-btns">
+        <a href="#request" class="btn-gold">📋 Submit Request</a>
+        <a href="#services" class="btn-outline">Explore Services</a>
+        <a href="https://wa.me/919872452167?text=Hello%20MY%20Cafe%20Pro%2C%20I%20need%20help." target="_blank" class="btn-outline" style="border-color:#25D366; color:#25D366;"><i class="fab fa-whatsapp"></i> Chat Now</a>
+      </div>
+      <div class="icon-badges">
+        <div class="icon-badge"><i class="fas fa-print"></i> Printing</div>
+        <div class="icon-badge"><i class="fas fa-id-card"></i> Aadhaar-PAN</div>
+        <div class="icon-badge"><i class="fas fa-landmark"></i> Govt Schemes</div>
+        <div class="icon-badge"><i class="fas fa-piggy-bank"></i> Fintech</div>
+      </div>
+    </div>
+    <div class="hero-visual fade-up">
+      <img src="https://placehold.co/520x400/0C0C18/0A66FF?text=CYBER+CAFE+PRO&font=montserrat" alt="MY Cafe Pro – Cyber Cafe Digital Hub">
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =================== SERVICES =================== -->
+<section id="services" class="container">
+  <h2 class="section-title fade-up"><i class="fas fa-cogs" style="color:var(--gold); margin-right:10px;"></i> Our Premium Services</h2>
+  <div class="services-grid" id="services-grid"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =================== FINTECH SERVICES =================== -->
+<section id="fintech" class="fintech-section">
+  <div class="container">
+    <h2 class="section-title fade-up"><i class="fas fa-coins" style="color:var(--cyan); margin-right:10px;"></i> Fintech <span>Services</span></h2>
+    <p style="color:var(--muted); margin-bottom:36px; margin-top:-30px; padding-left:25px; font-size:1rem;">Complete banking & financial solutions at your doorstep</p>
+    <div class="fintech-grid">
+      <div class="fintech-card fade-up">
+        <div class="card-icon">🏦</div>
+        <h3>Zero Balance Account Opening</h3>
+        <p>Open a savings account instantly with zero minimum balance requirement. Documents-ready process.</p>
+        <span class="tag">Banking</span>
+      </div>
+      <div class="fintech-card fade-up">
+        <div class="card-icon">💳</div>
+        <h3>Credit Card Services</h3>
+        <p>Apply for credit cards from leading banks. Get instant approval checks and document assistance.</p>
+        <span class="tag">Cards</span>
+      </div>
+      <div class="fintech-card fade-up">
+        <div class="card-icon">🏠</div>
+        <h3>Home & Personal Loans</h3>
+        <p>Loan application assistance for home, personal, and business loans with best interest rate matching.</p>
+        <span class="tag">Loans</span>
+      </div>
+      <div class="fintech-card fade-up">
+        <div class="card-icon">💰</div>
+        <h3>Insurance Services</h3>
+        <p>Life, health, and vehicle insurance plans. Compare, buy, and manage your policy at one place.</p>
+        <span class="tag">Insurance</span>
+      </div>
+      <div class="fintech-card fade-up">
+        <div class="card-icon">📱</div>
+        <h3>Mobile & DTH Recharge</h3>
+        <p>Instant recharge for all operators, DTH services, and electricity bill payments 24/7.</p>
+        <span class="tag">Payments</span>
+      </div>
+      <div class="fintech-card fade-up">
+        <div class="card-icon">💸</div>
+        <h3>Money Transfer (NEFT/IMPS)</h3>
+        <p>Fast domestic & international money transfers. Aadhar-enabled payment system (AePS) available.</p>
+        <span class="tag">Transfers</span>
+      </div>
+      <div class="fintech-card fade-up">
+        <div class="card-icon">📊</div>
+        <h3>Mutual Funds & SIP</h3>
+        <p>Start your investment journey with SIP. Expert guidance on top-performing mutual fund schemes.</p>
+        <span class="tag">Investment</span>
+      </div>
+      <div class="fintech-card fade-up">
+        <div class="card-icon">🧾</div>
+        <h3>Current Account Services</h3>
+        <p>Business account opening, MSME registration, and GST linked current account setup assistance.</p>
+        <span class="tag">Business</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =================== EGOVERNANCE SERVICES =================== -->
+<section id="egovt" class="egovt-section">
+  <div class="container">
+    <h2 class="section-title fade-up"><i class="fas fa-landmark" style="color:var(--gold); margin-right:10px;"></i> eGovernance <span>Services</span></h2>
+    <p style="color:var(--muted); margin-bottom:36px; margin-top:-30px; padding-left:25px; font-size:1rem;">All government digital services handled with expert assistance</p>
+    <div class="egovt-grid">
+      <div class="egovt-card fade-up">
+        <div class="egovt-icon"><i class="fas fa-id-card"></i></div>
+        <h3>Aadhaar Card Services</h3>
+        <p>New enrollment, address update, mobile linking, biometric update & Aadhaar PDF download.</p>
+        <span class="egovt-badge">UIDAI</span>
+      </div>
+      <div class="egovt-card fade-up">
+        <div class="egovt-icon"><i class="fas fa-credit-card"></i></div>
+        <h3>PAN Card Services</h3>
+        <p>New PAN application, reprint, correction, and Aadhaar-PAN linking (mandatory for ITR).</p>
+        <span class="egovt-badge">Income Tax</span>
+      </div>
+      <div class="egovt-card fade-up">
+        <div class="egovt-icon"><i class="fas fa-hospital-user"></i></div>
+        <h3>Ayushman Bharat Card</h3>
+        <p>Apply, download, and verify Ayushman Bharat PM-JAY health card for ₹5 Lakh health coverage.</p>
+        <span class="egovt-badge">Health</span>
+      </div>
+      <div class="egovt-card fade-up">
+        <div class="egovt-icon"><i class="fas fa-passport"></i></div>
+        <h3>Passport Assistance</h3>
+        <p>New passport application, renewal, and Tatkal services with document verification.</p>
+        <span class="egovt-badge">MEA</span>
+      </div>
+      <div class="egovt-card fade-up">
+        <div class="egovt-icon"><i class="fas fa-car"></i></div>
+        <h3>Driving Licence / RC</h3>
+        <p>DL application, renewal, vehicle RC download, address change, and related Parivahan services.</p>
+        <span class="egovt-badge">Parivahan</span>
+      </div>
+      <div class="egovt-card fade-up">
+        <div class="egovt-icon"><i class="fas fa-hand-holding-heart"></i></div>
+        <h3>Govt Scheme Assistance</h3>
+        <p>PM Kisan, E-Shram, Labour Card, Ration Card, BPL registration & other welfare schemes.</p>
+        <span class="egovt-badge">Welfare</span>
+      </div>
+      <div class="egovt-card fade-up">
+        <div class="egovt-icon"><i class="fas fa-briefcase"></i></div>
+        <h3>Job Forms & Notifications</h3>
+        <p>Sarkari exam forms, admit cards, results, and government job application assistance.</p>
+        <span class="egovt-badge">Recruitment</span>
+      </div>
+      <div class="egovt-card fade-up">
+        <div class="egovt-icon"><i class="fas fa-file-contract"></i></div>
+        <h3>Income / Caste Certificate</h3>
+        <p>Income, caste, domicile, and OBC certificates through state government portals.</p>
+        <span class="egovt-badge">State Govt</span>
+      </div>
+      <div class="egovt-card fade-up">
+        <div class="egovt-icon"><i class="fas fa-calculator"></i></div>
+        <h3>ITR Filing</h3>
+        <p>Income Tax Return filing for individuals, salaried employees & small businesses. Form 16 assistance.</p>
+        <span class="egovt-badge">Income Tax</span>
+      </div>
+      <div class="egovt-card fade-up">
+        <div class="egovt-icon"><i class="fas fa-store"></i></div>
+        <h3>GST Registration & Filing</h3>
+        <p>New GST registration, monthly/quarterly return filing, and e-invoice assistance for businesses.</p>
+        <span class="egovt-badge">GST Portal</span>
+      </div>
+      <div class="egovt-card fade-up">
+        <div class="egovt-icon"><i class="fas fa-house-chimney"></i></div>
+        <h3>Property Registration</h3>
+        <p>Land record search, property registry appointment booking, and stamp duty calculation.</p>
+        <span class="egovt-badge">Revenue</span>
+      </div>
+      <div class="egovt-card fade-up">
+        <div class="egovt-icon"><i class="fas fa-baby"></i></div>
+        <h3>Birth / Death Certificate</h3>
+        <p>Online application and download of birth and death certificates from municipal portals.</p>
+        <span class="egovt-badge">Municipality</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =================== WHY CHOOSE =================== -->
+<section class="container">
+  <h2 class="section-title fade-up">Why Choose <span>MY Cafe Pro</span></h2>
+  <div class="why-grid">
+    <div class="why-card fade-up"><i class="fas fa-bolt"></i><h3>Fast Processing</h3><p>Express digital services – no long queues</p></div>
+    <div class="why-card fade-up"><i class="fas fa-shield-alt"></i><h3>Secure & Reliable</h3><p>100% data privacy assured</p></div>
+    <div class="why-card fade-up"><i class="fas fa-umbrella"></i><h3>All Under One Roof</h3><p>50+ services, one location</p></div>
+    <div class="why-card fade-up"><i class="fas fa-chalkboard-user"></i><h3>Expert Assistance</h3><p>Trained & certified professionals</p></div>
+  </div>
+  <div class="counter-bar">
+    <div class="counter-item"><div class="counter-number" data-target="5200">0</div><p>Happy Customers</p></div>
+    <div class="counter-item"><div class="counter-number" data-target="98">0</div><p>% Satisfaction Rate</p></div>
+    <div class="counter-item"><div class="counter-number" data-target="50">0</div><p>Services Offered</p></div>
+    <div class="counter-item"><div class="counter-number" data-target="7">0</div><p>Years of Experience</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =================== LEAD / REQUEST FORM =================== -->
+<section id="request" class="container">
+  <h2 class="section-title fade-up">📋 Submit Service Request</h2>
+  <div class="form-box fade-up">
+    <form id="leadForm" action="https://formspree.io/f/xbdqejvz" method="POST">
+      <input type="hidden" name="_subject" value="New Service Request – MY Cafe Pro">
+      <input type="hidden" name="_cc" value="mycafepro1@gmail.com">
+      <input type="hidden" name="_replyto" value="">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" name="fullname" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label>Mobile Number *</label>
+          <input type="tel" name="mobile" placeholder="+91 XXXXX XXXXX" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Service Required *</label>
+          <select name="service" required>
+            <option value="">-- Select Service --</option>
+            <optgroup label="📄 Documentation">
+              <option>Document Printing & Photocopy</option>
+              <option>Passport Size Photos</option>
+              <option>Document Scanning</option>
+            </optgroup>
+            <optgroup label="🏛️ eGovernance">
+              <option>Aadhaar Card Services</option>
+              <option>PAN Card Services</option>
+              <option>Ayushman Card</option>
+              <option>Passport Assistance</option>
+              <option>Driving Licence / RC</option>
+              <option>Govt Scheme Registration</option>
+              <option>Job Forms & Sarkari Naukri</option>
+              <option>ITR Filing</option>
+              <option>GST Registration & Filing</option>
+              <option>Income / Caste Certificate</option>
+            </optgroup>
+            <optgroup label="💰 Fintech">
+              <option>Zero Balance Account Opening</option>
+              <option>Credit Card Application</option>
+              <option>Loan Services</option>
+              <option>Money Transfer (AePS/NEFT)</option>
+              <option>Insurance Services</option>
+              <option>Mutual Funds / SIP</option>
+            </optgroup>
+            <option>Other (describe below)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Message / Additional Details</label>
+        <textarea name="message" rows="3" placeholder="Describe your requirement in detail..."></textarea>
+      </div>
+      <div class="form-group upload-zone">
+        <label for="uploadDoc"><i class="fas fa-paperclip" style="color:var(--gold); margin-right:8px;"></i> Upload Document (optional – PDF/JPG/PNG) <span style="display:block; font-size:0.78rem; margin-top:4px; color:#666;">Click to choose file</span></label>
+        <input type="file" id="uploadDoc" name="attachment" accept=".pdf,.jpg,.png">
+      </div>
+      <!-- WhatsApp opt-in -->
+      <div class="form-group" style="display:flex; align-items:center; gap:10px; margin-top:6px;">
+        <input type="checkbox" id="waConsent" name="whatsapp_contact" value="yes" style="width:18px;height:18px; accent-color:var(--blue);">
+        <label for="waConsent" style="font-size:0.88rem; color:#999; margin:0;">Also contact me on WhatsApp (+91 9872452167)</label>
+      </div>
+      <button type="submit" class="submit-btn" style="margin-top:20px;">Submit Request ➤</button>
+      <div id="leadSuccess" class="success-msg">✅ Your request has been submitted! We'll contact you shortly on WhatsApp/Email.</div>
+      <div id="leadError" class="error-msg">❌ Submission failed. Please try again or call us directly.</div>
+    </form>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =================== FEEDBACK FORM =================== -->
+<section id="feedback" class="container">
+  <h2 class="section-title fade-up">💬 Share Your Feedback</h2>
+  <div style="display:flex; flex-wrap:wrap; gap:40px;">
+    <!-- Feedback Form -->
+    <div style="flex:1; min-width:280px;">
+      <div class="form-box fade-up">
+        <h3 style="color:var(--gold); margin-bottom:20px; font-size:1.2rem;">Rate Your Experience</h3>
+        <form id="feedbackForm" action="https://formspree.io/f/mwvajkqr" method="POST">
+          <input type="hidden" name="_subject" value="Customer Feedback – MY Cafe Pro">
+          <input type="hidden" name="_cc" value="mycafepro1@gmail.com">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name *</label>
+              <input type="text" name="customer_name" placeholder="Full name" required>
+            </div>
+            <div class="form-group">
+              <label>Mobile / Email</label>
+              <input type="text" name="contact" placeholder="+91 or email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Service Used</label>
+            <select name="service_used">
+              <option value="">-- Which service did you use? --</option>
+              <option>Aadhaar Services</option>
+              <option>PAN Card</option>
+              <option>Printing / Scanning</option>
+              <option>Loan / Credit Card</option>
+              <option>eGovernance</option>
+              <option>Money Transfer</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Your Rating *</label>
+            <div class="star-rating" id="starRatingGroup">
+              <input type="radio" name="rating" id="s5" value="5 Stars"><label for="s5">★</label>
+              <input type="radio" name="rating" id="s4" value="4 Stars"><label for="s4">★</label>
+              <input type="radio" name="rating" id="s3" value="3 Stars"><label for="s3">★</label>
+              <input type="radio" name="rating" id="s2" value="2 Stars"><label for="s2">★</label>
+              <input type="radio" name="rating" id="s1" value="1 Star"><label for="s1">★</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Your Review *</label>
+            <textarea name="review" rows="3" placeholder="Tell us about your experience..." required></textarea>
+          </div>
+          <div class="form-group" style="display:flex; align-items:center; gap:10px;">
+            <input type="checkbox" id="showReview" name="show_on_website" value="yes" checked style="width:18px;height:18px; accent-color:var(--gold);">
+            <label for="showReview" style="font-size:0.88rem; color:#999; margin:0;">Show my review on the website</label>
+          </div>
+          <button type="submit" class="submit-btn submit-btn-gold" style="margin-top:16px;">Submit Feedback ⭐</button>
+          <div id="feedbackSuccess" class="success-msg">⭐ Thank you for your feedback! It helps us serve you better.</div>
+          <div id="feedbackError" class="error-msg">❌ Submission failed. Please try again.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =================== TESTIMONIALS =================== -->
+<section id="testimonials" class="container">
+  <h2 class="section-title fade-up">⭐ Customer Testimonials</h2>
+  <div class="swiper testimonialSwiper" style="overflow:hidden; padding:10px 0 40px;">
+    <div class="swiper-wrapper" id="testimonialsWrapper">
+      <!-- Static base reviews -->
+      <div class="swiper-slide testimonial-slide">
+        <i class="fas fa-quote-left" style="color:var(--gold); font-size:1.5rem;"></i>
+        <div class="stars">★★★★★</div>
+        <p>"Fast printing and Aadhaar services. Highly professional! The staff is very supportive and patient."</p>
+        <h4>– Rajesh Kumar</h4>
+        <span class="service-tag">Aadhaar Services</span>
+      </div>
+      <div class="swiper-slide testimonial-slide">
+        <i class="fas fa-quote-left" style="color:var(--gold); font-size:1.5rem;"></i>
+        <div class="stars">★★★★★</div>
+        <p>"MY Cafe Pro helped me with PAN card reprint and loan application. Flawless experience. Highly recommend!"</p>
+        <h4>– Priya Sharma</h4>
+        <span class="service-tag">Loan Services</span>
+      </div>
+      <div class="swiper-slide testimonial-slide">
+        <i class="fas fa-quote-left" style="color:var(--gold); font-size:1.5rem;"></i>
+        <div class="stars">★★★★★</div>
+        <p>"Government form filling and Ayushman card was done in minutes. Strongly recommend this cyber cafe."</p>
+        <h4>– Ankit Verma</h4>
+        <span class="service-tag">eGovernance</span>
+      </div>
+      <div class="swiper-slide testimonial-slide">
+        <i class="fas fa-quote-left" style="color:var(--gold); font-size:1.5rem;"></i>
+        <div class="stars">★★★★★</div>
+        <p>"Zero balance account opened in 20 minutes. All documents handled by them. Superb service!"</p>
+        <h4>– Gurpreet Singh</h4>
+        <span class="service-tag">Banking</span>
+      </div>
+      <div class="swiper-slide testimonial-slide">
+        <i class="fas fa-quote-left" style="color:var(--gold); font-size:1.5rem;"></i>
+        <div class="stars">★★★★☆</div>
+        <p>"ITR filing done quickly and accurately. The staff explained everything clearly. Great service center."</p>
+        <h4>– Meena Devi</h4>
+        <span class="service-tag">ITR Filing</span>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =================== CONTACT =================== -->
+<section id="contact" style="padding:70px 0;">
+  <div class="container" style="display:flex; flex-wrap:wrap; gap:50px;">
+    <div style="flex:1; min-width:280px;" class="fade-up">
+      <h2 style="color:var(--gold); margin-bottom:24px; font-size:2rem;">Contact Us</h2>
+      <div class="contact-info-item">
+        <div class="contact-icon-wrap green-wrap"><i class="fab fa-whatsapp"></i></div>
+        <div>
+          <div style="font-size:0.8rem; color:var(--muted);">WhatsApp</div>
+          <a href="https://wa.me/919872452167" target="_blank" style="color:#25D366; font-weight:700; font-size:1.05rem; text-decoration:none;">+91 98724 52167</a>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon-wrap"><i class="fas fa-phone-alt"></i></div>
+        <div>
+          <div style="font-size:0.8rem; color:var(--muted);">Phone</div>
+          <strong>+91 98724 52167</strong>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon-wrap gold-wrap"><i class="fas fa-envelope"></i></div>
+        <div>
+          <div style="font-size:0.8rem; color:var(--muted);">Email</div>
+          <a href="mailto:mycafepro1@gmail.com" style="color:var(--gold); text-decoration:none; font-weight:600;">mycafepro1@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon-wrap"><i class="fas fa-clock"></i></div>
+        <div>
+          <div style="font-size:0.8rem; color:var(--muted);">Working Hours</div>
+          <strong>Mon–Sat: 9:00 AM – 8:00 PM</strong>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon-wrap gold-wrap"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <div style="font-size:0.8rem; color:var(--muted);">Location</div>
+          <strong>Ludhiana, Punjab</strong>
+        </div>
+      </div>
+
+      <!-- Quick WhatsApp Messages -->
+      <div style="margin-top:30px;">
+        <p style="color:var(--muted); font-size:0.88rem; margin-bottom:14px;">Quick WhatsApp Templates:</p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <a href="https://wa.me/919872452167?text=Hello%20MY%20Cafe%20Pro%2C%20I%20need%20Aadhaar%20Card%20services." target="_blank" style="background:rgba(37,211,102,0.1); border:1px solid rgba(37,211,102,0.25); color:#25D366; padding:6px 14px; border-radius:20px; font-size:0.82rem; text-decoration:none;">Aadhaar Help</a>
+          <a href="https://wa.me/919872452167?text=Hello%20MY%20Cafe%20Pro%2C%20I%20need%20PAN%20Card%20services." target="_blank" style="background:rgba(37,211,102,0.1); border:1px solid rgba(37,211,102,0.25); color:#25D366; padding:6px 14px; border-radius:20px; font-size:0.82rem; text-decoration:none;">PAN Card</a>
+          <a href="https://wa.me/919872452167?text=Hello%20MY%20Cafe%20Pro%2C%20I%20need%20help%20with%20Loan%20services." target="_blank" style="background:rgba(37,211,102,0.1); border:1px solid rgba(37,211,102,0.25); color:#25D366; padding:6px 14px; border-radius:20px; font-size:0.82rem; text-decoration:none;">Loan Enquiry</a>
+          <a href="https://wa.me/919872452167?text=Hello%20MY%20Cafe%20Pro%2C%20I%20want%20to%20know%20about%20your%20services." target="_blank" style="background:rgba(37,211,102,0.1); border:1px solid rgba(37,211,102,0.25); color:#25D366; padding:6px 14px; border-radius:20px; font-size:0.82rem; text-decoration:none;">General Enquiry</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:1; min-width:280px;" class="fade-up">
+      <h3 style="margin-bottom:16px;">📍 Find Us</h3>
+      <iframe class="map-frame" src="https://maps.google.com/maps?q=Cyber%20Cafe%20Ludhiana%20Punjab&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
+      <div style="margin-top:28px; background:var(--card); border-radius:20px; padding:22px; border:1px solid var(--border);">
+        <h4 style="color:var(--gold); margin-bottom:12px;">About MY Cafe Pro</h4>
+        <p style="color:var(--muted); font-size:0.9rem; line-height:1.7;">MY Cafe Pro is Ludhiana's trusted one-stop digital service center — delivering government, financial & documentation services with speed, accuracy, and a smile. 7+ years of experience. 5000+ happy customers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =================== FOOTER =================== -->
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-col" style="flex:1.5; min-width:220px;">
+      <div class="logo-area" style="margin-bottom:16px;">
+        <div class="logo-badge" style="width:44px;height:44px; overflow:hidden; background:transparent; border:2px solid var(--gold); box-shadow:0 0 10px var(--glow-gold); padding:2px;">
+          <img src="https://raw.githubusercontent.com/mycafepro/mycafepro/main/MY%20CAFE%20PRO%20Logo.png" alt="MY Cafe Pro" style="width:100%; height:100%; object-fit:contain; border-radius:8px;" onerror="this.outerHTML='<i class=&quot;fas fa-desktop&quot; style=&quot;font-size:1.2rem;color:var(--gold);&quot;></i>'">
+        </div>
+        <div>
+          <div class="cyber-text">CYBER CAFE</div>
+          <div class="brand-name" style="font-size:1.3rem;">MY Cafe Pro</div>
+        </div>
+      </div>
+      <p>Ludhiana's premier digital service center. Government schemes, Fintech, eGovernance & more – all at one place.</p>
+      <div class="social-links" style="margin-top:16px;">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/919872452167" target="_blank" style="background:rgba(37,211,102,0.1); border-color:rgba(37,211,102,0.3); color:#25D366;"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:mycafepro1@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#fintech">Fintech Services</a></li>
+        <li><a href="#egovt">eGovernance</a></li>
+        <li><a href="#request">Submit Request</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Top Services</h4>
+      <ul>
+        <li><a href="#">Aadhaar / PAN Services</a></li>
+        <li><a href="#">Ayushman Card</a></li>
+        <li><a href="#">Loan & Credit Card</a></li>
+        <li><a href="#">ITR & GST Filing</a></li>
+        <li><a href="#">Money Transfer</a></li>
+        <li><a href="#">Printing & Scanning</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+919872452167">📞 +91 98724 52167</a></li>
+        <li><a href="https://wa.me/919872452167">💬 WhatsApp Us</a></li>
+        <li><a href="mailto:mycafepro1@gmail.com">✉️ mycafepro1@gmail.com</a></li>
+        <li style="color:#666;">⏰ Mon–Sat: 9 AM – 8 PM</li>
+        <li style="color:#666;">📍 Ludhiana, Punjab</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <p>© 2025 MY Cafe Pro – All Rights Reserved | Designed for digital citizens of India 🇮🇳</p>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/919872452167?text=Hello%20MY%20Cafe%20Pro%2C%20I%20need%20help%20with%20your%20services." target="_blank" class="whatsapp-float" title="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // =================== SERVICES LIST ===================
+  const servicesList = [
+    { name: "Document Printing & Photocopy", icon: "fa-print", desc: "Black & white / colour prints" },
+    { name: "Passport Size Photos", icon: "fa-camera", desc: "Instant digital photos" },
+    { name: "Aadhaar Card Services", icon: "fa-id-card", desc: "Update, link & download" },
+    { name: "PAN Card Services", icon: "fa-credit-card", desc: "New, reprint & correction" },
+    { name: "Aadhaar-PAN Linking", icon: "fa-link", desc: "Mandatory for ITR filing" },
+    { name: "Ayushman Card", icon: "fa-hospital-user", desc: "₹5L health coverage card" },
+    { name: "Email & Form Filling", icon: "fa-envelope-open-text", desc: "Online forms & applications" },
+    { name: "Government Schemes", icon: "fa-hand-holding-heart", desc: "PM Kisan, E-Shram & more" },
+    { name: "Job Forms & Exams", icon: "fa-briefcase", desc: "Sarkari naukri applications" },
+    { name: "Document Scanning", icon: "fa-file-image", desc: "High-resolution scanning" },
+    { name: "Zero Balance Account", icon: "fa-piggy-bank", desc: "Instant account opening" },
+    { name: "Loan Services", icon: "fa-hand-holding-usd", desc: "Home, personal & business" },
+    { name: "Credit Card Services", icon: "fa-credit-card", desc: "Apply with best rates" },
+    { name: "Money Transfer", icon: "fa-money-bill-transfer", desc: "NEFT, IMPS & AePS" },
+  ];
+
+  const grid = document.getElementById("services-grid");
+  servicesList.forEach(s => {
+    const card = document.createElement("div");
+    card.className = "service-card fade-up";
+    card.innerHTML = `<div class="service-icon"><i class="fas ${s.icon}"></i></div><h3>${s.name}</h3><p>${s.desc}</p>`;
+    grid.appendChild(card);
+  });
+
+  // =================== COUNTERS ===================
+  const startCounters = () => {
+    document.querySelectorAll(".counter-number").forEach(counter => {
+      const target = +counter.getAttribute("data-target");
+      let current = 0;
+      const inc = target / 60;
+      const update = () => {
+        current += inc;
+        if (current < target) { counter.innerText = Math.ceil(current); requestAnimationFrame(update); }
+        else counter.innerText = target;
+      };
+      update();
+    });
+  };
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { startCounters(); counterObs.disconnect(); } });
+  }, { threshold: 0.3 });
+  const cSection = document.querySelector(".counter-bar");
+  if (cSection) counterObs.observe(cSection);
+
+  // =================== SWIPER ===================
+  // We use rewind instead of loop to avoid the "not enough slides" warning.
+  // Loop mode needs (slides >= slidesPerView * 2); rewind is a safe alternative.
+  const swiper = new Swiper(".testimonialSwiper", {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    loop: false,
+    rewind: true,
+    autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
+    pagination: { el: ".swiper-pagination", clickable: true },
+    grabCursor: true,
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 }
+    }
+  });
+
+  // =================== LEAD FORM ===================
+  const leadForm = document.getElementById("leadForm");
+  if (leadForm) {
+    leadForm.addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector("button[type=submit]");
+      btn.textContent = "Submitting..."; btn.disabled = true;
+      const fd = new FormData(this);
+      // Set email field for formspree routing
+      fd.set("_replyto", fd.get("email") || "no-email@provided.com");
+      try {
+        const res = await fetch("https://formspree.io/f/xbdqejvz", { method: "POST", body: fd, headers: { Accept: "application/json" } });
+        if (res.ok) {
+          document.getElementById("leadSuccess").style.display = "block";
+          this.reset();
+          // If WhatsApp checkbox checked, open WhatsApp
+          const waChecked = this.querySelector("#waConsent")?.checked;
+          if (waChecked) {
+            const name = fd.get("fullname") || "Customer";
+            const service = fd.get("service") || "your service";
+            setTimeout(() => {
+              window.open(`https://wa.me/919872452167?text=Hello%20MY%20Cafe%20Pro%2C%20I%20am%20${encodeURIComponent(name)}%20and%20I%20submitted%20a%20request%20for%20${encodeURIComponent(service)}.`, "_blank");
+            }, 1200);
+          }
+        } else {
+          document.getElementById("leadError").style.display = "block";
+        }
+      } catch {
+        document.getElementById("leadError").style.display = "block";
+      }
+      btn.textContent = "Submit Request ➤"; btn.disabled = false;
+    });
+  }
+
+  // =================== FEEDBACK FORM (with live testimonial) ===================
+  const fbForm = document.getElementById("feedbackForm");
+  if (fbForm) {
+    fbForm.addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector("button[type=submit]");
+      btn.textContent = "Submitting..."; btn.disabled = true;
+      const fd = new FormData(this);
+      try {
+        const res = await fetch("https://formspree.io/f/mwvajkqr", { method: "POST", body: fd, headers: { Accept: "application/json" } });
+        if (res.ok) {
+          document.getElementById("feedbackSuccess").style.display = "block";
+          // Add new review to testimonials
+          const name = fd.get("customer_name") || "Anonymous";
+          const review = fd.get("review") || "";
+          const service = fd.get("service_used") || "Our Services";
+          const rating = fd.get("rating") || "5 Stars";
+          const starCount = parseInt(rating) || 5;
+          const stars = "★".repeat(starCount) + "☆".repeat(5 - starCount);
+          const showOnSite = fd.get("show_on_website") === "yes";
+
+          if (showOnSite && review) {
+            const slide = document.createElement("div");
+            slide.className = "swiper-slide testimonial-slide";
+            slide.innerHTML = `
+              <i class="fas fa-quote-left" style="color:var(--gold); font-size:1.5rem;"></i>
+              <div class="stars">${stars}</div>
+              <p>"${review}"</p>
+              <h4>– ${name} <span style="color:#0A66FF; font-size:0.8rem;">✓ New Review</span></h4>
+              <span class="service-tag">${service}</span>
+            `;
+            swiper.appendSlide(slide);
+            swiper.update();
+          }
+          this.reset();
+        } else {
+          document.getElementById("feedbackError").style.display = "block";
+        }
+      } catch {
+        document.getElementById("feedbackError").style.display = "block";
+      }
+      btn.textContent = "Submit Feedback ⭐"; btn.disabled = false;
+    });
+  }
+
+  // =================== FADE ON SCROLL ===================
+  const fadeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll(".fade-up").forEach(el => fadeObs.observe(el));
+
+  // =================== FILE UPLOAD LABEL ===================
+  const fileInput = document.getElementById("uploadDoc");
+  if (fileInput) {
+    fileInput.addEventListener("change", function() {
+      const label = this.previousElementSibling;
+      if (this.files.length > 0) {
+        label.innerHTML = `<i class="fas fa-check-circle" style="color:var(--gold);"></i> ${this.files[0].name}`;
+      }
+    });
+  }
+
+  // =================== BLINK ANIMATION ===================
+  const style = document.createElement("style");
+  style.textContent = "@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }";
+  document.head.appendChild(style);
+</script>
+</body>
+</html>
