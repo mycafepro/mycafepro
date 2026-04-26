@@ -756,7 +756,7 @@
     <div style="flex:1; min-width:280px;">
       <div class="form-box fade-up">
         <h3 style="color:var(--gold); margin-bottom:20px; font-size:1.2rem;">Rate Your Experience</h3>
-        <form id="feedbackForm" action="https://formspree.io/f/mwvajkqr" method="POST">
+        <form id="feedbackForm" action="https://formspree.io/f/xbdqejvz" method="POST">
           <input type="hidden" name="_subject" value="Customer Feedback – MY Cafe Pro">
           <input type="hidden" name="_cc" value="mycafepro1@gmail.com">
           <div class="form-row">
@@ -1096,7 +1096,7 @@
       btn.textContent = "Submitting..."; btn.disabled = true;
       const fd = new FormData(this);
       try {
-        const res = await fetch("https://formspree.io/f/mwvajkqr", { method: "POST", body: fd, headers: { Accept: "application/json" } });
+        const res = await fetch("https://formspree.io/f/xbdqejvz", { method: "POST", body: fd, headers: { Accept: "application/json" } });
         if (res.ok) {
           document.getElementById("feedbackSuccess").style.display = "block";
           // Add new review to testimonials
