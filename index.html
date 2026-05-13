@@ -37,6 +37,60 @@
 
     .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
 
+    /* =================== NOTIFICATION BAR =================== */
+    .notif-bar {
+      background: linear-gradient(90deg, #0A0A1E, #0d1a40, #0A0A1E);
+      border-bottom: 1px solid rgba(10,102,255,0.35);
+      padding: 9px 0;
+      position: relative;
+      overflow: hidden;
+      z-index: 1000;
+    }
+    .notif-bar::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 60px;
+      background: linear-gradient(90deg, #0A0A1E, transparent);
+      z-index: 2; pointer-events: none;
+    }
+    .notif-bar::after {
+      content: '';
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 60px;
+      background: linear-gradient(270deg, #0A0A1E, transparent);
+      z-index: 2; pointer-events: none;
+    }
+    .notif-close {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: #888; cursor: pointer;
+      font-size: 1rem; z-index: 10; line-height: 1;
+      transition: color 0.2s;
+    }
+    .notif-close:hover { color: var(--gold); }
+    .notif-ticker {
+      display: flex; align-items: center; gap: 0;
+      white-space: nowrap;
+      animation: ticker-scroll 38s linear infinite;
+    }
+    .notif-ticker:hover { animation-play-state: paused; }
+    @keyframes ticker-scroll {
+      0% { transform: translateX(100vw); }
+      100% { transform: translateX(-100%); }
+    }
+    .notif-item {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; font-weight: 600; padding: 0 32px;
+      color: #c0c8e8;
+    }
+    .notif-item .badge {
+      background: var(--blue); color: #fff;
+      padding: 2px 9px; border-radius: 20px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+    }
+    .notif-item .badge.gold { background: var(--gold); color: #000; }
+    .notif-item .badge.green { background: #25D366; color: #fff; }
+    .notif-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); margin-right: 4px; animation: blink 1.4s infinite; }
+
     /* =================== HEADER =================== */
     header {
       position: sticky;
@@ -175,10 +229,28 @@
     .hero-visual {
       flex: 0.85; text-align: center; position: relative;
     }
-    .hero-visual img {
-      max-width: 100%; border-radius: 28px;
-      box-shadow: 0 0 50px rgba(10,102,255,0.2), 0 0 100px rgba(10,102,255,0.07);
+    /* Hero logo image */
+    .hero-logo-img {
+      width: 340px; height: 340px;
+      border-radius: 36px;
+      object-fit: contain;
+      border: 2px solid rgba(245,176,66,0.4);
+      background: linear-gradient(135deg, #0A0A1C, #141430);
+      box-shadow: 0 0 60px rgba(245,176,66,0.18), 0 0 120px rgba(10,102,255,0.12);
+      padding: 20px;
+      max-width: 100%;
     }
+    .hero-logo-fallback {
+      width: 340px; height: 340px;
+      border-radius: 36px;
+      background: linear-gradient(135deg, #0A0A1C, #141430);
+      border: 2px solid rgba(245,176,66,0.4);
+      box-shadow: 0 0 60px rgba(245,176,66,0.18), 0 0 120px rgba(10,102,255,0.12);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; max-width: 100%;
+    }
+    .hero-logo-fallback i { font-size: 5rem; color: var(--gold); }
+    .hero-logo-fallback span { font-family: 'Rajdhani', sans-serif; font-size: 1.6rem; font-weight: 700; color: #fff; letter-spacing: 0.05em; }
 
     /* =================== SECTION STYLES =================== */
     section { padding: 70px 0; }
@@ -201,6 +273,7 @@
       border: 1px solid var(--border);
       text-align: center; cursor: pointer;
       transition: all 0.3s ease;
+      text-decoration: none; display: block; color: inherit;
     }
     .service-card:hover {
       transform: translateY(-7px);
@@ -225,6 +298,7 @@
       border: 1px solid rgba(10,102,255,0.2);
       transition: all 0.3s;
       position: relative; overflow: hidden;
+      cursor: pointer; text-decoration: none; display: block; color: inherit;
     }
     .fintech-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
@@ -252,6 +326,7 @@
       border-radius: 20px; padding: 26px 20px;
       border: 1px solid rgba(245,176,66,0.15);
       transition: 0.3s; position: relative; overflow: hidden;
+      cursor: pointer; text-decoration: none; display: block; color: inherit;
     }
     .egovt-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
@@ -391,16 +466,42 @@
     .footer-col ul li a { color: #888; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
     .footer-col ul li a:hover { color: var(--gold); }
     .footer-col p { color: #666; font-size: 0.85rem; line-height: 1.6; }
-    .social-links { display: flex; gap: 14px; margin-top: 8px; }
+
+    /* =================== SOCIAL ICONS – themed =================== */
+    .social-links { display: flex; gap: 14px; margin-top: 8px; flex-wrap: wrap; }
     .social-links a {
       width: 42px; height: 42px; border-radius: 12px;
-      background: #0C0C1A; border: 1px solid #252535;
       display: flex; align-items: center; justify-content: center;
-      color: #888; font-size: 1.15rem; text-decoration: none;
-      transition: 0.3s;
+      font-size: 1.15rem; text-decoration: none;
+      transition: 0.3s; border: 1.5px solid transparent;
     }
-    .social-links a:hover { border-color: var(--blue); color: var(--blue); box-shadow: 0 0 10px rgba(10,102,255,0.3); }
+    /* Facebook – blue */
+    .social-links .s-fb { background: rgba(24,119,242,0.12); color: #1877F2; border-color: rgba(24,119,242,0.35); }
+    .social-links .s-fb:hover { background: #1877F2; color: #fff; box-shadow: 0 0 14px rgba(24,119,242,0.55); border-color: #1877F2; }
+    /* Instagram – gradient pink/orange */
+    .social-links .s-ig { background: rgba(225,48,108,0.1); color: #E1306C; border-color: rgba(225,48,108,0.3); }
+    .social-links .s-ig:hover { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; box-shadow: 0 0 14px rgba(225,48,108,0.5); border-color: transparent; }
+    /* X / Twitter – white/grey */
+    .social-links .s-x { background: rgba(255,255,255,0.07); color: #e0e0e0; border-color: rgba(255,255,255,0.18); }
+    .social-links .s-x:hover { background: #fff; color: #000; box-shadow: 0 0 14px rgba(255,255,255,0.25); border-color: #fff; }
+    /* WhatsApp – green */
+    .social-links .s-wa { background: rgba(37,211,102,0.1); color: #25D366; border-color: rgba(37,211,102,0.3); }
+    .social-links .s-wa:hover { background: #25D366; color: #fff; box-shadow: 0 0 14px rgba(37,211,102,0.5); border-color: #25D366; }
+    /* Email – gold themed */
+    .social-links .s-mail { background: rgba(245,176,66,0.1); color: var(--gold); border-color: rgba(245,176,66,0.3); }
+    .social-links .s-mail:hover { background: var(--gold); color: #000; box-shadow: 0 0 14px var(--glow-gold); border-color: var(--gold); }
+    /* Website / Globe – cyan themed */
+    .social-links .s-web { background: rgba(0,212,255,0.1); color: var(--cyan); border-color: rgba(0,212,255,0.3); }
+    .social-links .s-web:hover { background: var(--cyan); color: #000; box-shadow: 0 0 14px rgba(0,212,255,0.5); border-color: var(--cyan); }
+
     .footer-bottom { border-top: 1px solid #111122; margin-top: 40px; padding-top: 20px; text-align: center; color: #444; font-size: 0.85rem; }
+    .zalinga-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+    .zalinga-link:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
 
     /* =================== WHATSAPP FLOAT =================== */
     .whatsapp-float {
@@ -435,7 +536,6 @@
       .section-title { font-size: 1.75rem; }
       .form-row { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-      .hero-visual { display: none; }
     }
 
     /* Animate on scroll */
@@ -444,9 +544,28 @@
 
     /* Section divider */
     .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0; }
+
+    /* Pre-fill service highlight on form */
+    .form-group select.prefilled { border-color: var(--gold); box-shadow: 0 0 10px rgba(245,176,66,0.25); }
   </style>
 </head>
 <body>
+
+<!-- =================== NOTIFICATION BAR =================== -->
+<div class="notif-bar" id="notifBar">
+  <div style="overflow:hidden; padding: 0 50px 0 16px;">
+    <div class="notif-ticker" id="notifTicker">
+      <span class="notif-item"><span class="notif-dot"></span><span class="badge">NEW</span> Ayushman Bharat Card registration is now open – Apply today!</span>
+      <span class="notif-item">🎉 <span class="badge gold">OFFER</span> Free document scanning for first-time customers this week.</span>
+      <span class="notif-item"><span class="notif-dot"></span><span class="badge">ALERT</span> Aadhaar address update deadline extended – Get it done now.</span>
+      <span class="notif-item">💳 <span class="badge">INFO</span> Zero balance account opening – No documents hassle, we handle it all.</span>
+      <span class="notif-item">⏰ <span class="badge green">HOURS</span> Open Mon–Sat 9 AM – 8 PM &nbsp;|&nbsp; 📞 +91 98724 52167</span>
+      <span class="notif-item"><span class="notif-dot"></span><span class="badge gold">HOT</span> ITR filing season is live – File now to avoid late fees!</span>
+      <span class="notif-item">🏠 <span class="badge">LOAN</span> Home & Personal Loan assistance – Best rates, instant apply.</span>
+    </div>
+  </div>
+  <button class="notif-close" onclick="document.getElementById('notifBar').style.display='none'" title="Close">✕</button>
+</div>
 
 <!-- =================== HEADER =================== -->
 <header>
@@ -494,7 +613,18 @@
       </div>
     </div>
     <div class="hero-visual fade-up">
-      <img src="https://placehold.co/520x400/0C0C18/0A66FF?text=CYBER+CAFE+PRO&font=montserrat" alt="MY Cafe Pro – Cyber Cafe Digital Hub">
+      <img
+        src="https://raw.githubusercontent.com/mycafepro/mycafepro/main/MY%20CAFE%20PRO%20Logo.png"
+        alt="MY Cafe Pro – Cyber Cafe Digital Hub"
+        class="hero-logo-img"
+        id="heroLogoImg"
+        onerror="this.style.display='none'; document.getElementById('heroLogoFallback').style.display='flex';"
+      >
+      <div class="hero-logo-fallback" id="heroLogoFallback" style="display:none;">
+        <i class="fas fa-desktop"></i>
+        <span>MY CAFE PRO</span>
+        <span style="font-size:0.95rem; color:var(--muted); font-family:'Exo 2',sans-serif;">CYBER CAFE</span>
+      </div>
     </div>
   </div>
 </section>
@@ -515,54 +645,54 @@
     <h2 class="section-title fade-up"><i class="fas fa-coins" style="color:var(--cyan); margin-right:10px;"></i> Fintech <span>Services</span></h2>
     <p style="color:var(--muted); margin-bottom:36px; margin-top:-30px; padding-left:25px; font-size:1rem;">Complete banking & financial solutions at your doorstep</p>
     <div class="fintech-grid">
-      <div class="fintech-card fade-up">
+      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Zero Balance Account Opening')">
         <div class="card-icon">🏦</div>
         <h3>Zero Balance Account Opening</h3>
         <p>Open a savings account instantly with zero minimum balance requirement. Documents-ready process.</p>
         <span class="tag">Banking</span>
-      </div>
-      <div class="fintech-card fade-up">
+      </a>
+      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Credit Card Application')">
         <div class="card-icon">💳</div>
         <h3>Credit Card Services</h3>
         <p>Apply for credit cards from leading banks. Get instant approval checks and document assistance.</p>
         <span class="tag">Cards</span>
-      </div>
-      <div class="fintech-card fade-up">
+      </a>
+      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Loan Services')">
         <div class="card-icon">🏠</div>
         <h3>Home & Personal Loans</h3>
         <p>Loan application assistance for home, personal, and business loans with best interest rate matching.</p>
         <span class="tag">Loans</span>
-      </div>
-      <div class="fintech-card fade-up">
+      </a>
+      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Insurance Services')">
         <div class="card-icon">💰</div>
         <h3>Insurance Services</h3>
         <p>Life, health, and vehicle insurance plans. Compare, buy, and manage your policy at one place.</p>
         <span class="tag">Insurance</span>
-      </div>
-      <div class="fintech-card fade-up">
+      </a>
+      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Mobile & DTH Recharge')">
         <div class="card-icon">📱</div>
         <h3>Mobile & DTH Recharge</h3>
         <p>Instant recharge for all operators, DTH services, and electricity bill payments 24/7.</p>
         <span class="tag">Payments</span>
-      </div>
-      <div class="fintech-card fade-up">
+      </a>
+      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Money Transfer (AePS/NEFT)')">
         <div class="card-icon">💸</div>
         <h3>Money Transfer (NEFT/IMPS)</h3>
         <p>Fast domestic & international money transfers. Aadhar-enabled payment system (AePS) available.</p>
         <span class="tag">Transfers</span>
-      </div>
-      <div class="fintech-card fade-up">
+      </a>
+      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Mutual Funds / SIP')">
         <div class="card-icon">📊</div>
         <h3>Mutual Funds & SIP</h3>
         <p>Start your investment journey with SIP. Expert guidance on top-performing mutual fund schemes.</p>
         <span class="tag">Investment</span>
-      </div>
-      <div class="fintech-card fade-up">
+      </a>
+      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Current Account / MSME Registration')">
         <div class="card-icon">🧾</div>
         <h3>Current Account Services</h3>
         <p>Business account opening, MSME registration, and GST linked current account setup assistance.</p>
         <span class="tag">Business</span>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -575,78 +705,78 @@
     <h2 class="section-title fade-up"><i class="fas fa-landmark" style="color:var(--gold); margin-right:10px;"></i> eGovernance <span>Services</span></h2>
     <p style="color:var(--muted); margin-bottom:36px; margin-top:-30px; padding-left:25px; font-size:1rem;">All government digital services handled with expert assistance</p>
     <div class="egovt-grid">
-      <div class="egovt-card fade-up">
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('Aadhaar Card Services')">
         <div class="egovt-icon"><i class="fas fa-id-card"></i></div>
         <h3>Aadhaar Card Services</h3>
         <p>New enrollment, address update, mobile linking, biometric update & Aadhaar PDF download.</p>
         <span class="egovt-badge">UIDAI</span>
-      </div>
-      <div class="egovt-card fade-up">
+      </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('PAN Card Services')">
         <div class="egovt-icon"><i class="fas fa-credit-card"></i></div>
         <h3>PAN Card Services</h3>
         <p>New PAN application, reprint, correction, and Aadhaar-PAN linking (mandatory for ITR).</p>
         <span class="egovt-badge">Income Tax</span>
-      </div>
-      <div class="egovt-card fade-up">
+      </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('Ayushman Card')">
         <div class="egovt-icon"><i class="fas fa-hospital-user"></i></div>
         <h3>Ayushman Bharat Card</h3>
         <p>Apply, download, and verify Ayushman Bharat PM-JAY health card for ₹5 Lakh health coverage.</p>
         <span class="egovt-badge">Health</span>
-      </div>
-      <div class="egovt-card fade-up">
+      </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('Passport Assistance')">
         <div class="egovt-icon"><i class="fas fa-passport"></i></div>
         <h3>Passport Assistance</h3>
         <p>New passport application, renewal, and Tatkal services with document verification.</p>
         <span class="egovt-badge">MEA</span>
-      </div>
-      <div class="egovt-card fade-up">
+      </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('Driving Licence / RC')">
         <div class="egovt-icon"><i class="fas fa-car"></i></div>
         <h3>Driving Licence / RC</h3>
         <p>DL application, renewal, vehicle RC download, address change, and related Parivahan services.</p>
         <span class="egovt-badge">Parivahan</span>
-      </div>
-      <div class="egovt-card fade-up">
+      </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('Govt Scheme Registration')">
         <div class="egovt-icon"><i class="fas fa-hand-holding-heart"></i></div>
         <h3>Govt Scheme Assistance</h3>
         <p>PM Kisan, E-Shram, Labour Card, Ration Card, BPL registration & other welfare schemes.</p>
         <span class="egovt-badge">Welfare</span>
-      </div>
-      <div class="egovt-card fade-up">
+      </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('Job Forms & Sarkari Naukri')">
         <div class="egovt-icon"><i class="fas fa-briefcase"></i></div>
         <h3>Job Forms & Notifications</h3>
         <p>Sarkari exam forms, admit cards, results, and government job application assistance.</p>
         <span class="egovt-badge">Recruitment</span>
-      </div>
-      <div class="egovt-card fade-up">
+      </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('Income / Caste Certificate')">
         <div class="egovt-icon"><i class="fas fa-file-contract"></i></div>
         <h3>Income / Caste Certificate</h3>
         <p>Income, caste, domicile, and OBC certificates through state government portals.</p>
         <span class="egovt-badge">State Govt</span>
-      </div>
-      <div class="egovt-card fade-up">
+      </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('ITR Filing')">
         <div class="egovt-icon"><i class="fas fa-calculator"></i></div>
         <h3>ITR Filing</h3>
         <p>Income Tax Return filing for individuals, salaried employees & small businesses. Form 16 assistance.</p>
         <span class="egovt-badge">Income Tax</span>
-      </div>
-      <div class="egovt-card fade-up">
+      </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('GST Registration & Filing')">
         <div class="egovt-icon"><i class="fas fa-store"></i></div>
         <h3>GST Registration & Filing</h3>
         <p>New GST registration, monthly/quarterly return filing, and e-invoice assistance for businesses.</p>
         <span class="egovt-badge">GST Portal</span>
-      </div>
-      <div class="egovt-card fade-up">
+      </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('Property Registration')">
         <div class="egovt-icon"><i class="fas fa-house-chimney"></i></div>
         <h3>Property Registration</h3>
         <p>Land record search, property registry appointment booking, and stamp duty calculation.</p>
         <span class="egovt-badge">Revenue</span>
-      </div>
-      <div class="egovt-card fade-up">
+      </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('Birth / Death Certificate')">
         <div class="egovt-icon"><i class="fas fa-baby"></i></div>
         <h3>Birth / Death Certificate</h3>
         <p>Online application and download of birth and death certificates from municipal portals.</p>
         <span class="egovt-badge">Municipality</span>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -676,29 +806,26 @@
 <section id="request" class="container">
   <h2 class="section-title fade-up">📋 Submit Service Request</h2>
   <div class="form-box fade-up">
-    <form id="leadForm" action="https://formspree.io/f/xbdqejvz" method="POST">
-      <input type="hidden" name="_subject" value="New Service Request – MY Cafe Pro">
-      <input type="hidden" name="_cc" value="mycafepro1@gmail.com">
-      <input type="hidden" name="_replyto" value="">
+    <form id="leadForm">
       <div class="form-row">
         <div class="form-group">
           <label>Full Name *</label>
-          <input type="text" name="fullname" placeholder="Your full name" required>
+          <input type="text" name="fullname" id="leadName" placeholder="Your full name" required>
         </div>
         <div class="form-group">
           <label>Mobile Number *</label>
-          <input type="tel" name="mobile" placeholder="+91 XXXXX XXXXX" required>
+          <input type="tel" name="mobile" id="leadMobile" placeholder="+91 XXXXX XXXXX" required>
         </div>
         <div class="form-group">
           <label>Email Address</label>
-          <input type="email" name="email" placeholder="your@email.com">
+          <input type="email" name="email" id="leadEmail" placeholder="your@email.com">
         </div>
         <div class="form-group">
           <label>Service Required *</label>
-          <select name="service" required>
+          <select name="service" id="leadService" required>
             <option value="">-- Select Service --</option>
             <optgroup label="📄 Documentation">
-              <option>Document Printing & Photocopy</option>
+              <option>Document Printing &amp; Photocopy</option>
               <option>Passport Size Photos</option>
               <option>Document Scanning</option>
             </optgroup>
@@ -709,10 +836,12 @@
               <option>Passport Assistance</option>
               <option>Driving Licence / RC</option>
               <option>Govt Scheme Registration</option>
-              <option>Job Forms & Sarkari Naukri</option>
+              <option>Job Forms &amp; Sarkari Naukri</option>
               <option>ITR Filing</option>
-              <option>GST Registration & Filing</option>
+              <option>GST Registration &amp; Filing</option>
               <option>Income / Caste Certificate</option>
+              <option>Property Registration</option>
+              <option>Birth / Death Certificate</option>
             </optgroup>
             <optgroup label="💰 Fintech">
               <option>Zero Balance Account Opening</option>
@@ -721,6 +850,8 @@
               <option>Money Transfer (AePS/NEFT)</option>
               <option>Insurance Services</option>
               <option>Mutual Funds / SIP</option>
+              <option>Mobile &amp; DTH Recharge</option>
+              <option>Current Account / MSME Registration</option>
             </optgroup>
             <option>Other (describe below)</option>
           </select>
@@ -728,20 +859,19 @@
       </div>
       <div class="form-group">
         <label>Message / Additional Details</label>
-        <textarea name="message" rows="3" placeholder="Describe your requirement in detail..."></textarea>
+        <textarea name="message" id="leadMessage" rows="3" placeholder="Describe your requirement in detail..."></textarea>
       </div>
       <div class="form-group upload-zone">
         <label for="uploadDoc"><i class="fas fa-paperclip" style="color:var(--gold); margin-right:8px;"></i> Upload Document (optional – PDF/JPG/PNG) <span style="display:block; font-size:0.78rem; margin-top:4px; color:#666;">Click to choose file</span></label>
         <input type="file" id="uploadDoc" name="attachment" accept=".pdf,.jpg,.png">
       </div>
-      <!-- WhatsApp opt-in -->
       <div class="form-group" style="display:flex; align-items:center; gap:10px; margin-top:6px;">
         <input type="checkbox" id="waConsent" name="whatsapp_contact" value="yes" style="width:18px;height:18px; accent-color:var(--blue);">
         <label for="waConsent" style="font-size:0.88rem; color:#999; margin:0;">Also contact me on WhatsApp (+91 9872452167)</label>
       </div>
       <button type="submit" class="submit-btn" style="margin-top:20px;">Submit Request ➤</button>
       <div id="leadSuccess" class="success-msg">✅ Your request has been submitted! We'll contact you shortly on WhatsApp/Email.</div>
-      <div id="leadError" class="error-msg">❌ Submission failed. Please try again or call us directly.</div>
+      <div id="leadError" class="error-msg">❌ Submission failed. Please try again or call us directly at +91 98724 52167.</div>
     </form>
   </div>
 </section>
@@ -752,26 +882,23 @@
 <section id="feedback" class="container">
   <h2 class="section-title fade-up">💬 Share Your Feedback</h2>
   <div style="display:flex; flex-wrap:wrap; gap:40px;">
-    <!-- Feedback Form -->
     <div style="flex:1; min-width:280px;">
       <div class="form-box fade-up">
         <h3 style="color:var(--gold); margin-bottom:20px; font-size:1.2rem;">Rate Your Experience</h3>
-        <form id="feedbackForm" action="https://formspree.io/f/xbdqejvz" method="POST">
-          <input type="hidden" name="_subject" value="Customer Feedback – MY Cafe Pro">
-          <input type="hidden" name="_cc" value="mycafepro1@gmail.com">
+        <form id="feedbackForm">
           <div class="form-row">
             <div class="form-group">
               <label>Your Name *</label>
-              <input type="text" name="customer_name" placeholder="Full name" required>
+              <input type="text" name="customer_name" id="fbName" placeholder="Full name" required>
             </div>
             <div class="form-group">
               <label>Mobile / Email</label>
-              <input type="text" name="contact" placeholder="+91 or email">
+              <input type="text" name="contact" id="fbContact" placeholder="+91 or email">
             </div>
           </div>
           <div class="form-group">
             <label>Service Used</label>
-            <select name="service_used">
+            <select name="service_used" id="fbService">
               <option value="">-- Which service did you use? --</option>
               <option>Aadhaar Services</option>
               <option>PAN Card</option>
@@ -794,7 +921,7 @@
           </div>
           <div class="form-group">
             <label>Your Review *</label>
-            <textarea name="review" rows="3" placeholder="Tell us about your experience..." required></textarea>
+            <textarea name="review" id="fbReview" rows="3" placeholder="Tell us about your experience..." required></textarea>
           </div>
           <div class="form-group" style="display:flex; align-items:center; gap:10px;">
             <input type="checkbox" id="showReview" name="show_on_website" value="yes" checked style="width:18px;height:18px; accent-color:var(--gold);">
@@ -816,7 +943,6 @@
   <h2 class="section-title fade-up">⭐ Customer Testimonials</h2>
   <div class="swiper testimonialSwiper" style="overflow:hidden; padding:10px 0 40px;">
     <div class="swiper-wrapper" id="testimonialsWrapper">
-      <!-- Static base reviews -->
       <div class="swiper-slide testimonial-slide">
         <i class="fas fa-quote-left" style="color:var(--gold); font-size:1.5rem;"></i>
         <div class="stars">★★★★★</div>
@@ -899,8 +1025,6 @@
           <strong>Amritsar, Punjab</strong>
         </div>
       </div>
-
-      <!-- Quick WhatsApp Messages -->
       <div style="margin-top:30px;">
         <p style="color:var(--muted); font-size:0.88rem; margin-bottom:14px;">Quick WhatsApp Templates:</p>
         <div style="display:flex; flex-wrap:wrap; gap:10px;">
@@ -911,7 +1035,6 @@
         </div>
       </div>
     </div>
-
     <div style="flex:1; min-width:280px;" class="fade-up">
       <h3 style="margin-bottom:16px;">📍 Find Us</h3>
       <iframe class="map-frame" src="https://maps.google.com/maps?q=Cyber%20Cafe%20Amritsar%20Punjab&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
@@ -940,24 +1063,12 @@
       </div>
       <p>Amritsar's premier digital service center. Government schemes, Fintech, eGovernance & more – all at one place.</p>
       <div class="social-links" style="margin-top:16px;">
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/mycafepro" target="_blank" rel="noopener noreferrer">
-    <i class="fab fa-facebook-f"></i></a>
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/mycafepro"target="_blank"rel="noopener noreferrer"class="social-icon instagram"><i class="fab fa-instagram"></i></a>
-        <!-- X (Twitter) -->
-        <a href="https://www.x.com/mycafepro"target="_blank" rel="noopener noreferrer"class="social-icon twitter-x"><i class="fab fa-x-twitter"></i></a>
-         <!-- Whats app -->
-        <a href="https://wa.me/919872452167" target="_blank" style="background:rgba(37,211,102,0.1); border-color:rgba(37,211,102,0.3); color:#25D366;"><i class="fab fa-whatsapp"></i></a>
-        <a href="mailto:mycafepro1@gmail.com"><i class="fas fa-envelope"></i></a>
-        <!-- T (MYCAFE TOOLS) -->
-        <a href="https://mycafetools.vercel.app/" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   class="social-icon internet">
-    <i class="fas fa-globe"></i>
-</a>
-         
+        <a href="https://www.facebook.com/mycafepro" target="_blank" rel="noopener noreferrer" class="s-fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/mycafepro" target="_blank" rel="noopener noreferrer" class="s-ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.x.com/mycafepro" target="_blank" rel="noopener noreferrer" class="s-x" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://wa.me/919872452167" target="_blank" rel="noopener noreferrer" class="s-wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:mycafepro1@gmail.com" class="s-mail" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://mycafetools.vercel.app/" target="_blank" rel="noopener noreferrer" class="s-web" title="MY Cafe Tools Website"><i class="fas fa-globe"></i></a>
       </div>
     </div>
     <div class="footer-col">
@@ -974,12 +1085,12 @@
     <div class="footer-col">
       <h4>Top Services</h4>
       <ul>
-        <li><a href="#">Aadhaar / PAN Services</a></li>
-        <li><a href="#">Ayushman Card</a></li>
-        <li><a href="#">Loan & Credit Card</a></li>
-        <li><a href="#">ITR & GST Filing</a></li>
-        <li><a href="#">Money Transfer</a></li>
-        <li><a href="#">Printing & Scanning</a></li>
+        <li><a href="#request" onclick="prefillService('Aadhaar Card Services')">Aadhaar / PAN Services</a></li>
+        <li><a href="#request" onclick="prefillService('Ayushman Card')">Ayushman Card</a></li>
+        <li><a href="#request" onclick="prefillService('Loan Services')">Loan & Credit Card</a></li>
+        <li><a href="#request" onclick="prefillService('ITR Filing')">ITR & GST Filing</a></li>
+        <li><a href="#request" onclick="prefillService('Money Transfer (AePS/NEFT)')">Money Transfer</a></li>
+        <li><a href="#request" onclick="prefillService('Document Printing & Photocopy')">Printing & Scanning</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -994,7 +1105,8 @@
     </div>
   </div>
   <div class="footer-bottom container">
-    <p>© 2026 MY Cafe Pro – All Rights Reserved | Designed by Zalinga Technologies</p>
+    <p>© 2026 MY Cafe Pro – All Rights Reserved | Designed by
+    <a href="https://www.zalingatech.com" target="_blank" rel="noopener noreferrer" class="zalinga-link">Zalinga Technologies</a></p>
   </div>
 </footer>
 
@@ -1004,31 +1116,56 @@
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
+  // =================== BLINK ANIMATION ===================
+  const style = document.createElement("style");
+  style.textContent = "@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }";
+  document.head.appendChild(style);
+
   // =================== SERVICES LIST ===================
   const servicesList = [
-    { name: "Document Printing & Photocopy", icon: "fa-print", desc: "Black & white / colour prints" },
-    { name: "Passport Size Photos", icon: "fa-camera", desc: "Instant digital photos" },
-    { name: "Aadhaar Card Services", icon: "fa-id-card", desc: "Update, link & download" },
-    { name: "PAN Card Services", icon: "fa-credit-card", desc: "New, reprint & correction" },
-    { name: "Aadhaar-PAN Linking", icon: "fa-link", desc: "Mandatory for ITR filing" },
-    { name: "Ayushman Card", icon: "fa-hospital-user", desc: "₹5L health coverage card" },
-    { name: "Email & Form Filling", icon: "fa-envelope-open-text", desc: "Online forms & applications" },
-    { name: "Government Schemes", icon: "fa-hand-holding-heart", desc: "PM Kisan, E-Shram & more" },
-    { name: "Job Forms & Exams", icon: "fa-briefcase", desc: "Sarkari naukri applications" },
-    { name: "Document Scanning", icon: "fa-file-image", desc: "High-resolution scanning" },
-    { name: "Zero Balance Account", icon: "fa-piggy-bank", desc: "Instant account opening" },
-    { name: "Loan Services", icon: "fa-hand-holding-usd", desc: "Home, personal & business" },
-    { name: "Credit Card Services", icon: "fa-credit-card", desc: "Apply with best rates" },
-    { name: "Money Transfer", icon: "fa-money-bill-transfer", desc: "NEFT, IMPS & AePS" },
+    { name: "Document Printing & Photocopy", icon: "fa-print", desc: "Black & white / colour prints", val: "Document Printing & Photocopy" },
+    { name: "Passport Size Photos", icon: "fa-camera", desc: "Instant digital photos", val: "Passport Size Photos" },
+    { name: "Aadhaar Card Services", icon: "fa-id-card", desc: "Update, link & download", val: "Aadhaar Card Services" },
+    { name: "PAN Card Services", icon: "fa-credit-card", desc: "New, reprint & correction", val: "PAN Card Services" },
+    { name: "Aadhaar-PAN Linking", icon: "fa-link", desc: "Mandatory for ITR filing", val: "Aadhaar Card Services" },
+    { name: "Ayushman Card", icon: "fa-hospital-user", desc: "₹5L health coverage card", val: "Ayushman Card" },
+    { name: "Email & Form Filling", icon: "fa-envelope-open-text", desc: "Online forms & applications", val: "Other (describe below)" },
+    { name: "Government Schemes", icon: "fa-hand-holding-heart", desc: "PM Kisan, E-Shram & more", val: "Govt Scheme Registration" },
+    { name: "Job Forms & Exams", icon: "fa-briefcase", desc: "Sarkari naukri applications", val: "Job Forms & Sarkari Naukri" },
+    { name: "Document Scanning", icon: "fa-file-image", desc: "High-resolution scanning", val: "Document Printing & Photocopy" },
+    { name: "Zero Balance Account", icon: "fa-piggy-bank", desc: "Instant account opening", val: "Zero Balance Account Opening" },
+    { name: "Loan Services", icon: "fa-hand-holding-usd", desc: "Home, personal & business", val: "Loan Services" },
+    { name: "Credit Card Services", icon: "fa-credit-card", desc: "Apply with best rates", val: "Credit Card Application" },
+    { name: "Money Transfer", icon: "fa-money-bill-transfer", desc: "NEFT, IMPS & AePS", val: "Money Transfer (AePS/NEFT)" },
   ];
 
   const grid = document.getElementById("services-grid");
   servicesList.forEach(s => {
-    const card = document.createElement("div");
+    const card = document.createElement("a");
+    card.href = "#request";
     card.className = "service-card fade-up";
     card.innerHTML = `<div class="service-icon"><i class="fas ${s.icon}"></i></div><h3>${s.name}</h3><p>${s.desc}</p>`;
+    card.addEventListener("click", () => prefillService(s.val));
     grid.appendChild(card);
   });
+
+  // =================== PREFILL SERVICE ===================
+  function prefillService(serviceName) {
+    const sel = document.getElementById("leadService");
+    if (!sel) return;
+    // Find best matching option
+    const opts = Array.from(sel.options);
+    const match = opts.find(o => o.value === serviceName || o.text === serviceName);
+    if (match) {
+      sel.value = match.value;
+      sel.classList.add("prefilled");
+      setTimeout(() => sel.classList.remove("prefilled"), 3000);
+    }
+    // Scroll to form after small delay
+    setTimeout(() => {
+      document.getElementById("request").scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  }
 
   // =================== COUNTERS ===================
   const startCounters = () => {
@@ -1051,8 +1188,6 @@
   if (cSection) counterObs.observe(cSection);
 
   // =================== SWIPER ===================
-  // We use rewind instead of loop to avoid the "not enough slides" warning.
-  // Loop mode needs (slides >= slidesPerView * 2); rewind is a safe alternative.
   const swiper = new Swiper(".testimonialSwiper", {
     slidesPerView: 1,
     spaceBetween: 24,
@@ -1067,82 +1202,123 @@
     }
   });
 
-  // =================== LEAD FORM ===================
+  // =================== LEAD FORM (Formspree AJAX) ===================
   const leadForm = document.getElementById("leadForm");
   if (leadForm) {
     leadForm.addEventListener("submit", async function(e) {
       e.preventDefault();
       const btn = this.querySelector("button[type=submit]");
-      btn.textContent = "Submitting..."; btn.disabled = true;
-      const fd = new FormData(this);
-      // Set email field for formspree routing
-      fd.set("_replyto", fd.get("email") || "no-email@provided.com");
+      const successEl = document.getElementById("leadSuccess");
+      const errorEl = document.getElementById("leadError");
+      successEl.style.display = "none";
+      errorEl.style.display = "none";
+      btn.textContent = "Submitting...";
+      btn.disabled = true;
+
+      // Build FormData from fields manually
+      const data = {
+        fullname: document.getElementById("leadName").value,
+        mobile: document.getElementById("leadMobile").value,
+        email: document.getElementById("leadEmail").value || "no-reply@mycafepro.com",
+        service: document.getElementById("leadService").value,
+        message: document.getElementById("leadMessage").value,
+        whatsapp_contact: document.getElementById("waConsent").checked ? "yes" : "no",
+        _subject: "New Service Request – MY Cafe Pro",
+        _replyto: document.getElementById("leadEmail").value || "no-reply@mycafepro.com"
+      };
+
       try {
-        const res = await fetch("https://formspree.io/f/xbdqejvz", { method: "POST", body: fd, headers: { Accept: "application/json" } });
+        const res = await fetch("https://formspree.io/f/xlgzonve", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json();
         if (res.ok) {
-          document.getElementById("leadSuccess").style.display = "block";
+          successEl.style.display = "block";
           this.reset();
-          // If WhatsApp checkbox checked, open WhatsApp
-          const waChecked = this.querySelector("#waConsent")?.checked;
-          if (waChecked) {
-            const name = fd.get("fullname") || "Customer";
-            const service = fd.get("service") || "your service";
+          // WhatsApp redirect if opted in
+          if (document.getElementById("waConsent").checked) {
+            const name = data.fullname || "Customer";
+            const service = data.service || "your service";
             setTimeout(() => {
               window.open(`https://wa.me/919872452167?text=Hello%20MY%20Cafe%20Pro%2C%20I%20am%20${encodeURIComponent(name)}%20and%20I%20submitted%20a%20request%20for%20${encodeURIComponent(service)}.`, "_blank");
             }, 1200);
           }
         } else {
-          document.getElementById("leadError").style.display = "block";
+          errorEl.style.display = "block";
+          console.error("Formspree error:", json);
         }
-      } catch {
-        document.getElementById("leadError").style.display = "block";
+      } catch(err) {
+        errorEl.style.display = "block";
+        console.error("Network error:", err);
       }
-      btn.textContent = "Submit Request ➤"; btn.disabled = false;
+      btn.textContent = "Submit Request ➤";
+      btn.disabled = false;
     });
   }
 
-  // =================== FEEDBACK FORM (with live testimonial) ===================
+  // =================== FEEDBACK FORM ===================
   const fbForm = document.getElementById("feedbackForm");
   if (fbForm) {
     fbForm.addEventListener("submit", async function(e) {
       e.preventDefault();
       const btn = this.querySelector("button[type=submit]");
-      btn.textContent = "Submitting..."; btn.disabled = true;
-      const fd = new FormData(this);
-      try {
-        const res = await fetch("https://formspree.io/f/xbdqejvz", { method: "POST", body: fd, headers: { Accept: "application/json" } });
-        if (res.ok) {
-          document.getElementById("feedbackSuccess").style.display = "block";
-          // Add new review to testimonials
-          const name = fd.get("customer_name") || "Anonymous";
-          const review = fd.get("review") || "";
-          const service = fd.get("service_used") || "Our Services";
-          const rating = fd.get("rating") || "5 Stars";
-          const starCount = parseInt(rating) || 5;
-          const stars = "★".repeat(starCount) + "☆".repeat(5 - starCount);
-          const showOnSite = fd.get("show_on_website") === "yes";
+      const successEl = document.getElementById("feedbackSuccess");
+      const errorEl = document.getElementById("feedbackError");
+      successEl.style.display = "none";
+      errorEl.style.display = "none";
+      btn.textContent = "Submitting...";
+      btn.disabled = true;
 
-          if (showOnSite && review) {
+      const ratingEl = document.querySelector('input[name="rating"]:checked');
+      const showOnSite = document.getElementById("showReview").checked;
+
+      const data = {
+        customer_name: document.getElementById("fbName").value,
+        contact: document.getElementById("fbContact").value,
+        service_used: document.getElementById("fbService").value,
+        rating: ratingEl ? ratingEl.value : "Not rated",
+        review: document.getElementById("fbReview").value,
+        show_on_website: showOnSite ? "yes" : "no",
+        _subject: "Customer Feedback – MY Cafe Pro",
+        _replyto: document.getElementById("fbContact").value || "no-reply@mycafepro.com"
+      };
+
+      try {
+        const res = await fetch("https://formspree.io/f/xlgzonve", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          successEl.style.display = "block";
+          // Live testimonial
+          if (showOnSite && data.review) {
+            const starCount = parseInt(data.rating) || 5;
+            const stars = "★".repeat(starCount) + "☆".repeat(5 - starCount);
             const slide = document.createElement("div");
             slide.className = "swiper-slide testimonial-slide";
             slide.innerHTML = `
               <i class="fas fa-quote-left" style="color:var(--gold); font-size:1.5rem;"></i>
               <div class="stars">${stars}</div>
-              <p>"${review}"</p>
-              <h4>– ${name} <span style="color:#0A66FF; font-size:0.8rem;">✓ New Review</span></h4>
-              <span class="service-tag">${service}</span>
+              <p>"${data.review}"</p>
+              <h4>– ${data.customer_name} <span style="color:#0A66FF; font-size:0.8rem;">✓ New Review</span></h4>
+              <span class="service-tag">${data.service_used || "Our Services"}</span>
             `;
             swiper.appendSlide(slide);
             swiper.update();
           }
           this.reset();
         } else {
-          document.getElementById("feedbackError").style.display = "block";
+          errorEl.style.display = "block";
         }
-      } catch {
-        document.getElementById("feedbackError").style.display = "block";
+      } catch(err) {
+        errorEl.style.display = "block";
+        console.error("Feedback error:", err);
       }
-      btn.textContent = "Submit Feedback ⭐"; btn.disabled = false;
+      btn.textContent = "Submit Feedback ⭐";
+      btn.disabled = false;
     });
   }
 
@@ -1162,11 +1338,6 @@
       }
     });
   }
-
-  // =================== BLINK ANIMATION ===================
-  const style = document.createElement("style");
-  style.textContent = "@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }";
-  document.head.appendChild(style);
 </script>
 </body>
 </html>
