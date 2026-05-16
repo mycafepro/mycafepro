@@ -261,40 +261,73 @@
     }
     .section-title span { color: var(--gold); }
 
+    /* =================== SECTION TOGGLE =================== */
+    .section-toggle-header {
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; user-select: none;
+      margin-bottom: 0;
+    }
+    .section-toggle-header .section-title { margin-bottom: 0; }
+    .toggle-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(10,102,255,0.12); border: 1px solid rgba(10,102,255,0.3);
+      color: var(--cyan); padding: 7px 18px; border-radius: 30px;
+      font-size: 0.82rem; font-weight: 700; cursor: pointer;
+      font-family: 'Exo 2', sans-serif; transition: all 0.25s;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .toggle-btn:hover { background: rgba(10,102,255,0.25); border-color: var(--cyan); }
+    .toggle-btn.gold { background: rgba(245,176,66,0.12); border-color: rgba(245,176,66,0.3); color: var(--gold); }
+    .toggle-btn.gold:hover { background: rgba(245,176,66,0.25); }
+    .toggle-btn .chevron { display: inline-block; transition: transform 0.3s; font-style: normal; }
+    .toggle-btn.collapsed .chevron { transform: rotate(-90deg); }
+    .section-collapsible {
+      overflow: hidden;
+      max-height: 4000px;
+      transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.3s ease;
+      opacity: 1;
+      margin-top: 28px;
+    }
+    .section-collapsible.collapsed {
+      max-height: 0;
+      opacity: 0;
+      margin-top: 0;
+    }
+
     /* =================== SERVICES GRID =================== */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+      gap: 14px;
     }
     .service-card {
       background: var(--card);
-      border-radius: 20px; padding: 26px 18px;
+      border-radius: 14px; padding: 18px 12px;
       border: 1px solid var(--border);
       text-align: center; cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none; display: block; color: inherit;
     }
     .service-card:hover {
-      transform: translateY(-7px);
+      transform: translateY(-5px);
       border-color: var(--blue);
-      box-shadow: 0 20px 40px -15px rgba(10,102,255,0.3);
+      box-shadow: 0 16px 30px -12px rgba(10,102,255,0.3);
     }
-    .service-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 14px; transition: 0.2s; }
+    .service-icon { font-size: 1.9rem; color: var(--gold); margin-bottom: 10px; transition: 0.2s; }
     .service-card:hover .service-icon { text-shadow: 0 0 14px var(--gold); }
-    .service-card h3 { font-size: 1rem; margin-bottom: 6px; color: #fff; }
-    .service-card p { font-size: 0.8rem; color: var(--muted); }
+    .service-card h3 { font-size: 0.88rem; margin-bottom: 4px; color: #fff; }
+    .service-card p { font-size: 0.74rem; color: var(--muted); }
 
     /* =================== FINTECH SECTION =================== */
     .fintech-section { background: linear-gradient(135deg, #07071A, #0A0A18); }
     .fintech-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 16px;
     }
     .fintech-card {
       background: linear-gradient(135deg, #0C0C20, #10102A);
-      border-radius: 22px; padding: 28px 22px;
+      border-radius: 16px; padding: 20px 16px;
       border: 1px solid rgba(10,102,255,0.2);
       transition: all 0.3s;
       position: relative; overflow: hidden;
@@ -304,26 +337,26 @@
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
       background: linear-gradient(90deg, var(--blue), var(--cyan));
     }
-    .fintech-card:hover { transform: translateY(-6px); border-color: var(--blue); box-shadow: 0 15px 35px -10px rgba(10,102,255,0.3); }
-    .fintech-card .card-icon { font-size: 2.4rem; margin-bottom: 16px; }
-    .fintech-card h3 { font-size: 1.1rem; color: #fff; margin-bottom: 10px; }
-    .fintech-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .fintech-card:hover { transform: translateY(-5px); border-color: var(--blue); box-shadow: 0 12px 28px -8px rgba(10,102,255,0.3); }
+    .fintech-card .card-icon { font-size: 1.9rem; margin-bottom: 10px; }
+    .fintech-card h3 { font-size: 0.92rem; color: #fff; margin-bottom: 7px; }
+    .fintech-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
     .fintech-card .tag {
-      display: inline-block; margin-top: 12px;
+      display: inline-block; margin-top: 10px;
       background: rgba(10,102,255,0.15); color: var(--cyan);
-      padding: 3px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+      padding: 2px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600;
     }
 
     /* =================== EGOVERNANCE =================== */
     .egovt-section { background: linear-gradient(135deg, #050510, #080818); }
     .egovt-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 16px;
     }
     .egovt-card {
       background: var(--card2);
-      border-radius: 20px; padding: 26px 20px;
+      border-radius: 14px; padding: 18px 16px;
       border: 1px solid rgba(245,176,66,0.15);
       transition: 0.3s; position: relative; overflow: hidden;
       cursor: pointer; text-decoration: none; display: block; color: inherit;
@@ -332,14 +365,14 @@
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
       background: linear-gradient(90deg, var(--gold), #ffdd88);
     }
-    .egovt-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 15px 35px -10px rgba(245,176,66,0.25); }
-    .egovt-card .egovt-icon { font-size: 2.3rem; margin-bottom: 14px; color: var(--gold); }
-    .egovt-card h3 { font-size: 1rem; color: #fff; margin-bottom: 8px; }
-    .egovt-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .egovt-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 12px 28px -8px rgba(245,176,66,0.25); }
+    .egovt-card .egovt-icon { font-size: 1.9rem; margin-bottom: 10px; color: var(--gold); }
+    .egovt-card h3 { font-size: 0.88rem; color: #fff; margin-bottom: 6px; }
+    .egovt-card p { font-size: 0.76rem; color: var(--muted); line-height: 1.5; }
     .egovt-badge {
-      display: inline-block; margin-top: 10px;
+      display: inline-block; margin-top: 8px;
       background: rgba(245,176,66,0.12); color: var(--gold);
-      padding: 3px 12px; border-radius: 20px; font-size: 0.74rem; font-weight: 600;
+      padding: 2px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600;
     }
 
     /* =================== WHY CHOOSE =================== */
@@ -363,14 +396,33 @@
     .counter-item { text-align: center; }
     .counter-number { font-size: 2.8rem; font-weight: 800; color: var(--gold); font-family: 'Rajdhani', sans-serif; }
 
+    /* =================== DUAL FORMS LAYOUT =================== */
+    .forms-dual-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .dual-form-col { min-width: 0; }
+    @media (max-width: 860px) {
+      .forms-dual-row { grid-template-columns: 1fr; gap: 40px; }
+    }
+
     /* =================== FORMS =================== */
     .form-box {
       background: #08080F;
-      border-radius: 28px; padding: 38px;
+      border-radius: 22px; padding: 28px;
       border: 1px solid #202030;
-      box-shadow: 0 20px 40px -10px black;
+      box-shadow: 0 16px 36px -10px black;
     }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .compact-form .form-group { margin-bottom: 14px; }
+    .compact-form .form-group label { margin-bottom: 6px; font-size: 0.82rem; }
+    .compact-form .form-group input,
+    .compact-form .form-group select,
+    .compact-form .form-group textarea {
+      padding: 10px 14px; font-size: 0.88rem; border-radius: 11px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .form-group { margin-bottom: 18px; }
     .form-group label { display: block; margin-bottom: 8px; font-size: 0.88rem; color: #aaa; font-weight: 600; }
     .form-group input, .form-group select, .form-group textarea {
@@ -384,12 +436,6 @@
       outline: none; border-color: var(--blue); box-shadow: 0 0 10px rgba(10,102,255,0.3);
     }
     .form-group select option { background: #111120; }
-    .upload-zone {
-      border: 1.5px dashed var(--gold); border-radius: 14px;
-      padding: 16px; text-align: center; cursor: pointer;
-    }
-    .upload-zone input { display: none; }
-    .upload-zone label { cursor: pointer; color: #aaa; font-size: 0.88rem; }
     .submit-btn {
       width: 100%; padding: 15px;
       background: linear-gradient(135deg, #0A66FF, #0047b3);
@@ -555,9 +601,9 @@
 <div class="notif-bar" id="notifBar">
   <div style="overflow:hidden; padding: 0 50px 0 16px;">
     <div class="notif-ticker" id="notifTicker">
-      <span class="notif-item"><span class="notif-dot"></span><span class="badge">NEW</span> Ayushman Bharat Card registration is now open – Apply today!</span>
-      <span class="notif-item">🎉 <span class="badge gold">OFFER</span> Free document scanning for first-time customers this week.</span>
-      <span class="notif-item"><span class="notif-dot"></span><span class="badge">ALERT</span> Aadhaar address update deadline extended – Get it done now.</span>
+      <span class="notif-item"><span class="notif-dot"></span><span class="badge">NEW</span> Mukh Mantry Sehat Yojna MMYS Card registration is now open – Apply today!</span>
+      <span class="notif-item">🎉 <span class="badge gold">OFFER</span> Free document scanning for first-time customers today.</span>
+      <span class="notif-item"><span class="notif-dot"></span><span class="badge">ALERT</span> DO NOT Share you OTP and document with unknown persion</span>
       <span class="notif-item">💳 <span class="badge">INFO</span> Zero balance account opening – No documents hassle, we handle it all.</span>
       <span class="notif-item">⏰ <span class="badge green">HOURS</span> Open Mon–Sat 10 AM – 5 PM &nbsp;|&nbsp; 📞 +91 98724 52167</span>
       <span class="notif-item"><span class="notif-dot"></span><span class="badge gold">HOT</span> ITR filing season is live – File now to avoid late fees!</span>
@@ -633,8 +679,13 @@
 
 <!-- =================== SERVICES =================== -->
 <section id="services" class="container">
-  <h2 class="section-title fade-up"><i class="fas fa-cogs" style="color:var(--gold); margin-right:10px;"></i> Our Premium Services</h2>
-  <div class="services-grid" id="services-grid"></div>
+  <div class="section-toggle-header fade-up" onclick="toggleSection('services-body', 'toggle-services')">
+    <h2 class="section-title" style="margin-bottom:0;"><i class="fas fa-cogs" style="color:var(--gold); margin-right:10px;"></i> Our Premium Services</h2>
+    <button class="toggle-btn gold" id="toggle-services"><i class="chevron">▼</i> Collapse</button>
+  </div>
+  <div class="section-collapsible" id="services-body">
+    <div class="services-grid" id="services-grid"></div>
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -642,57 +693,76 @@
 <!-- =================== FINTECH SERVICES =================== -->
 <section id="fintech" class="fintech-section">
   <div class="container">
-    <h2 class="section-title fade-up"><i class="fas fa-coins" style="color:var(--cyan); margin-right:10px;"></i> Fintech <span>Services</span></h2>
-    <p style="color:var(--muted); margin-bottom:36px; margin-top:-30px; padding-left:25px; font-size:1rem;">Complete banking & financial solutions at your doorstep</p>
-    <div class="fintech-grid">
-      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Zero Balance Account Opening')">
-        <div class="card-icon">🏦</div>
-        <h3>Zero Balance Account Opening</h3>
-        <p>Open a savings account instantly with zero minimum balance requirement. Documents-ready process.</p>
-        <span class="tag">Banking</span>
-      </a>
-      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Credit Card Application')">
-        <div class="card-icon">💳</div>
-        <h3>Credit Card Services</h3>
-        <p>Apply for credit cards from leading banks. Get instant approval checks and document assistance.</p>
-        <span class="tag">Cards</span>
-      </a>
-      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Loan Services')">
-        <div class="card-icon">🏠</div>
-        <h3>Home & Personal Loans</h3>
-        <p>Loan application assistance for home, personal, and business loans with best interest rate matching.</p>
-        <span class="tag">Loans</span>
-      </a>
-      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Insurance Services')">
-        <div class="card-icon">💰</div>
-        <h3>Insurance Services</h3>
-        <p>Life, health, and vehicle insurance plans. Compare, buy, and manage your policy at one place.</p>
-        <span class="tag">Insurance</span>
-      </a>
-      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Mobile & DTH Recharge')">
-        <div class="card-icon">📱</div>
-        <h3>Mobile & DTH Recharge</h3>
-        <p>Instant recharge for all operators, DTH services, and electricity bill payments 24/7.</p>
-        <span class="tag">Payments</span>
-      </a>
-      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Money Transfer (AePS/NEFT)')">
-        <div class="card-icon">💸</div>
-        <h3>Money Transfer (NEFT/IMPS)</h3>
-        <p>Fast domestic & international money transfers. Aadhar-enabled payment system (AePS) available.</p>
-        <span class="tag">Transfers</span>
-      </a>
-      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Mutual Funds / SIP')">
-        <div class="card-icon">📊</div>
-        <h3>Mutual Funds & SIP</h3>
-        <p>Start your investment journey with SIP. Expert guidance on top-performing mutual fund schemes.</p>
-        <span class="tag">Investment</span>
-      </a>
-      <a href="#request" class="fintech-card fade-up" onclick="prefillService('Current Account / MSME Registration')">
-        <div class="card-icon">🧾</div>
-        <h3>Current Account Services</h3>
-        <p>Business account opening, MSME registration, and GST linked current account setup assistance.</p>
-        <span class="tag">Business</span>
-      </a>
+    <div class="section-toggle-header fade-up" onclick="toggleSection('fintech-body', 'toggle-fintech')">
+      <div>
+        <h2 class="section-title" style="margin-bottom:0;"><i class="fas fa-coins" style="color:var(--cyan); margin-right:10px;"></i> Fintech <span>Services</span></h2>
+        <p style="color:var(--muted); margin-top:6px; padding-left:25px; font-size:0.95rem;">Complete banking & financial solutions at your doorstep</p>
+      </div>
+      <button class="toggle-btn" id="toggle-fintech"><i class="chevron">▼</i> Collapse</button>
+    </div>
+    <div class="section-collapsible" id="fintech-body">
+      <div class="fintech-grid">
+        <a href="#request" class="fintech-card fade-up" onclick="prefillService('Zero Balance Account Opening')">
+          <div class="card-icon">🏦</div>
+          <h3>Zero Balance Account Opening</h3>
+          <p>Open a savings account instantly with zero minimum balance requirement. Documents-ready process.</p>
+          <span class="tag">Banking</span>
+        </a>
+        <a href="#request" class="fintech-card fade-up" onclick="prefillService('Credit Card Application')">
+          <div class="card-icon">💳</div>
+          <h3>Credit Card Services</h3>
+          <p>Apply for credit cards from leading banks. Get instant approval checks and document assistance.</p>
+          <span class="tag">Cards</span>
+        </a>
+        <a href="#request" class="fintech-card fade-up" onclick="prefillService('Loan Services')">
+          <div class="card-icon">🏠</div>
+          <h3>Home & Personal Loans</h3>
+          <p>Loan application assistance for home, personal, and business loans with best interest rate matching.</p>
+          <span class="tag">Loans</span>
+        </a>
+        <a href="#request" class="fintech-card fade-up" onclick="prefillService('Insurance Services')">
+          <div class="card-icon">💰</div>
+          <h3>Insurance Services</h3>
+          <p>Life, health, and vehicle insurance plans. Compare, buy, and manage your policy at one place.</p>
+          <span class="tag">Insurance</span>
+        </a>
+        <a href="#request" class="fintech-card fade-up" onclick="prefillService('Mobile & DTH Recharge')">
+          <div class="card-icon">📱</div>
+          <h3>Mobile & DTH Recharge</h3>
+          <p>Instant recharge for all operators, DTH services, and electricity bill payments 24/7.</p>
+          <span class="tag">Payments</span>
+        </a>
+        <a href="#request" class="fintech-card fade-up" onclick="prefillService('Money Transfer (AePS/NEFT)')">
+          <div class="card-icon">💸</div>
+          <h3>Money Transfer (NEFT/IMPS)</h3>
+          <p>Fast domestic & international money transfers. Aadhar-enabled payment system (AePS) available.</p>
+          <span class="tag">Transfers</span>
+        </a>
+        <a href="#request" class="fintech-card fade-up" onclick="prefillService('Mutual Funds / SIP')">
+          <div class="card-icon">📊</div>
+          <h3>Mutual Funds & SIP</h3>
+          <p>Start your investment journey with SIP. Expert guidance on top-performing mutual fund schemes.</p>
+          <span class="tag">Investment</span>
+        </a>
+        <a href="#request" class="fintech-card fade-up" onclick="prefillService('Current Account / MSME Registration')">
+          <div class="card-icon">🧾</div>
+          <h3>Current Account Services</h3>
+          <p>Business account opening, MSME registration, and GST linked current account setup assistance.</p>
+          <span class="tag">Business</span>
+        </a>
+        <a href="#request" class="fintech-card fade-up" onclick="prefillService('MSME Registration')">
+          <div class="card-icon">🏭</div>
+          <h3>MSME Registration</h3>
+          <p>Udyam (MSME) registration for small & medium enterprises. Get your Udyam certificate online.</p>
+          <span class="tag">MSME</span>
+        </a>
+        <a href="#request" class="fintech-card fade-up" onclick="prefillService('Firm Registration')">
+          <div class="card-icon">📝</div>
+          <h3>Firm Registration</h3>
+          <p>Register your proprietorship, partnership firm, or LLP. Complete end-to-end documentation support.</p>
+          <span class="tag">Business</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -702,9 +772,15 @@
 <!-- =================== EGOVERNANCE SERVICES =================== -->
 <section id="egovt" class="egovt-section">
   <div class="container">
-    <h2 class="section-title fade-up"><i class="fas fa-landmark" style="color:var(--gold); margin-right:10px;"></i> eGovernance <span>Services</span></h2>
-    <p style="color:var(--muted); margin-bottom:36px; margin-top:-30px; padding-left:25px; font-size:1rem;">All government digital services handled with expert assistance</p>
-    <div class="egovt-grid">
+    <div class="section-toggle-header fade-up" onclick="toggleSection('egovt-body', 'toggle-egovt')">
+      <div>
+        <h2 class="section-title" style="margin-bottom:0;"><i class="fas fa-landmark" style="color:var(--gold); margin-right:10px;"></i> eGovernance <span>Services</span></h2>
+        <p style="color:var(--muted); margin-top:6px; padding-left:25px; font-size:0.95rem;">All government digital services handled with expert assistance</p>
+      </div>
+      <button class="toggle-btn gold" id="toggle-egovt"><i class="chevron">▼</i> Collapse</button>
+    </div>
+    <div class="section-collapsible" id="egovt-body">
+      <div class="egovt-grid">
       <a href="#request" class="egovt-card fade-up" onclick="prefillService('Aadhaar Card Services')">
         <div class="egovt-icon"><i class="fas fa-id-card"></i></div>
         <h3>Aadhaar Card Services</h3>
@@ -777,6 +853,19 @@
         <p>Online application and download of birth and death certificates from municipal portals.</p>
         <span class="egovt-badge">Municipality</span>
       </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('MSME Registration')">
+        <div class="egovt-icon"><i class="fas fa-industry"></i></div>
+        <h3>MSME Registration</h3>
+        <p>Udyam registration for micro, small & medium enterprises. Get your Udyam certificate & benefits.</p>
+        <span class="egovt-badge">MSME</span>
+      </a>
+      <a href="#request" class="egovt-card fade-up" onclick="prefillService('Firm Registration')">
+        <div class="egovt-icon"><i class="fas fa-building"></i></div>
+        <h3>Firm Registration</h3>
+        <p>Register proprietorship, partnership firm, or LLP. Complete documentation & legal compliance support.</p>
+        <span class="egovt-badge">Business</span>
+      </a>
+    </div>
     </div>
   </div>
 </section>
@@ -802,136 +891,139 @@
 
 <div class="divider"></div>
 
-<!-- =================== LEAD / REQUEST FORM =================== -->
-<section id="request" class="container">
-  <h2 class="section-title fade-up">📋 Submit Service Request</h2>
-  <div class="form-box fade-up">
-    <form id="leadForm">
-      <div class="form-row">
-        <div class="form-group">
-          <label>Full Name *</label>
-          <input type="text" name="fullname" id="leadName" placeholder="Your full name" required>
-        </div>
-        <div class="form-group">
-          <label>Mobile Number *</label>
-          <input type="tel" name="mobile" id="leadMobile" placeholder="+91 XXXXX XXXXX" required>
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" name="email" id="leadEmail" placeholder="your@email.com">
-        </div>
-        <div class="form-group">
-          <label>Service Required *</label>
-          <select name="service" id="leadService" required>
-            <option value="">-- Select Service --</option>
-            <optgroup label="📄 Documentation">
-              <option>Document Printing &amp; Photocopy</option>
-              <option>Passport Size Photos</option>
-              <option>Document Scanning</option>
-            </optgroup>
-            <optgroup label="🏛️ eGovernance">
-              <option>Aadhaar Card Services</option>
-              <option>PAN Card Services</option>
-              <option>Ayushman Card</option>
-              <option>Passport Assistance</option>
-              <option>Driving Licence / RC</option>
-              <option>Govt Scheme Registration</option>
-              <option>Job Forms &amp; Sarkari Naukri</option>
-              <option>ITR Filing</option>
-              <option>GST Registration &amp; Filing</option>
-              <option>Income / Caste Certificate</option>
-              <option>Property Registration</option>
-              <option>Birth / Death Certificate</option>
-            </optgroup>
-            <optgroup label="💰 Fintech">
-              <option>Zero Balance Account Opening</option>
-              <option>Credit Card Application</option>
-              <option>Loan Services</option>
-              <option>Money Transfer (AePS/NEFT)</option>
-              <option>Insurance Services</option>
-              <option>Mutual Funds / SIP</option>
-              <option>Mobile &amp; DTH Recharge</option>
-              <option>Current Account / MSME Registration</option>
-            </optgroup>
-            <option>Other (describe below)</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Message / Additional Details</label>
-        <textarea name="message" id="leadMessage" rows="3" placeholder="Describe your requirement in detail..."></textarea>
-      </div>
-      <div class="form-group upload-zone">
-        <label for="uploadDoc"><i class="fas fa-paperclip" style="color:var(--gold); margin-right:8px;"></i> Upload Document (optional – PDF/JPG/PNG) <span style="display:block; font-size:0.78rem; margin-top:4px; color:#666;">Click to choose file</span></label>
-        <input type="file" id="uploadDoc" name="attachment" accept=".pdf,.jpg,.png">
-      </div>
-      <div class="form-group" style="display:flex; align-items:center; gap:10px; margin-top:6px;">
-        <input type="checkbox" id="waConsent" name="whatsapp_contact" value="yes" style="width:18px;height:18px; accent-color:var(--blue);">
-        <label for="waConsent" style="font-size:0.88rem; color:#999; margin:0;">Also contact me on WhatsApp (+91 9872452167)</label>
-      </div>
-      <button type="submit" class="submit-btn" style="margin-top:20px;">Submit Request ➤</button>
-      <div id="leadSuccess" class="success-msg">✅ Your request has been submitted! We'll contact you shortly on WhatsApp/Email.</div>
-      <div id="leadError" class="error-msg">❌ Submission failed. Please try again or call us directly at +91 98724 52167.</div>
-    </form>
-  </div>
-</section>
+<!-- =================== FORMS: REQUEST + FEEDBACK SIDE BY SIDE =================== -->
+<section id="request" style="padding:70px 0;">
+  <div class="container">
+    <div class="forms-dual-row">
 
-<div class="divider"></div>
-
-<!-- =================== FEEDBACK FORM =================== -->
-<section id="feedback" class="container">
-  <h2 class="section-title fade-up">💬 Share Your Feedback</h2>
-  <div style="display:flex; flex-wrap:wrap; gap:40px;">
-    <div style="flex:1; min-width:280px;">
-      <div class="form-box fade-up">
-        <h3 style="color:var(--gold); margin-bottom:20px; font-size:1.2rem;">Rate Your Experience</h3>
-        <form id="feedbackForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Your Name *</label>
-              <input type="text" name="customer_name" id="fbName" placeholder="Full name" required>
+      <!-- LEFT: Submit Service Request -->
+      <div class="dual-form-col fade-up">
+        <h2 class="section-title" style="font-size:1.7rem; margin-bottom:22px;">📋 Submit Service Request</h2>
+        <div class="form-box compact-form">
+          <form id="leadForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" name="fullname" id="leadName" placeholder="Your full name" required>
+              </div>
+              <div class="form-group">
+                <label>Mobile Number *</label>
+                <input type="tel" name="mobile" id="leadMobile" placeholder="+91 XXXXX XXXXX" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" id="leadEmail" placeholder="your@email.com">
+              </div>
+              <div class="form-group">
+                <label>Service Required *</label>
+                <select name="service" id="leadService" required>
+                  <option value="">-- Select Service --</option>
+                  <optgroup label="📄 Documentation">
+                    <option>Document Printing &amp; Photocopy</option>
+                    <option>Passport Size Photos</option>
+                    <option>Document Scanning</option>
+                  </optgroup>
+                  <optgroup label="🏛️ eGovernance">
+                    <option>Aadhaar Card Services</option>
+                    <option>PAN Card Services</option>
+                    <option>Ayushman Card</option>
+                    <option>Passport Assistance</option>
+                    <option>Driving Licence / RC</option>
+                    <option>Govt Scheme Registration</option>
+                    <option>Job Forms &amp; Sarkari Naukri</option>
+                    <option>ITR Filing</option>
+                    <option>GST Registration &amp; Filing</option>
+                    <option>Income / Caste Certificate</option>
+                    <option>Property Registration</option>
+                    <option>Birth / Death Certificate</option>
+                  </optgroup>
+                  <optgroup label="💰 Fintech">
+                    <option>Zero Balance Account Opening</option>
+                    <option>Credit Card Application</option>
+                    <option>Loan Services</option>
+                    <option>Money Transfer (AePS/NEFT)</option>
+                    <option>Insurance Services</option>
+                    <option>Mutual Funds / SIP</option>
+                    <option>Mobile &amp; DTH Recharge</option>
+                    <option>Current Account / MSME Registration</option>
+                    <option>MSME Registration</option>
+                    <option>Firm Registration</option>
+                  </optgroup>
+                  <option>Other (describe below)</option>
+                </select>
+              </div>
             </div>
             <div class="form-group">
-              <label>Mobile / Email</label>
-              <input type="text" name="contact" id="fbContact" placeholder="+91 or email">
+              <label>Message / Additional Details</label>
+              <textarea name="message" id="leadMessage" rows="3" placeholder="Describe your requirement in detail..."></textarea>
             </div>
-          </div>
-          <div class="form-group">
-            <label>Service Used</label>
-            <select name="service_used" id="fbService">
-              <option value="">-- Which service did you use? --</option>
-              <option>Aadhaar Services</option>
-              <option>PAN Card</option>
-              <option>Printing / Scanning</option>
-              <option>Loan / Credit Card</option>
-              <option>eGovernance</option>
-              <option>Money Transfer</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Your Rating *</label>
-            <div class="star-rating" id="starRatingGroup">
-              <input type="radio" name="rating" id="s5" value="5 Stars"><label for="s5">★</label>
-              <input type="radio" name="rating" id="s4" value="4 Stars"><label for="s4">★</label>
-              <input type="radio" name="rating" id="s3" value="3 Stars"><label for="s3">★</label>
-              <input type="radio" name="rating" id="s2" value="2 Stars"><label for="s2">★</label>
-              <input type="radio" name="rating" id="s1" value="1 Star"><label for="s1">★</label>
+            <div class="form-group" style="display:flex; align-items:center; gap:10px; margin-top:2px;">
+              <input type="checkbox" id="waConsent" name="whatsapp_contact" value="yes" style="width:16px;height:16px; accent-color:var(--blue);">
+              <label for="waConsent" style="font-size:0.85rem; color:#999; margin:0;">Also contact me on WhatsApp (+91 9872452167)</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>Your Review *</label>
-            <textarea name="review" id="fbReview" rows="3" placeholder="Tell us about your experience..." required></textarea>
-          </div>
-          <div class="form-group" style="display:flex; align-items:center; gap:10px;">
-            <input type="checkbox" id="showReview" name="show_on_website" value="yes" checked style="width:18px;height:18px; accent-color:var(--gold);">
-            <label for="showReview" style="font-size:0.88rem; color:#999; margin:0;">Show my review on the website</label>
-          </div>
-          <button type="submit" class="submit-btn submit-btn-gold" style="margin-top:16px;">Submit Feedback ⭐</button>
-          <div id="feedbackSuccess" class="success-msg">⭐ Thank you for your feedback! It helps us serve you better.</div>
-          <div id="feedbackError" class="error-msg">❌ Submission failed. Please try again.</div>
-        </form>
+            <button type="submit" class="submit-btn" style="margin-top:16px;">Submit Request ➤</button>
+            <div id="leadSuccess" class="success-msg">✅ Your request has been submitted! We'll contact you shortly on WhatsApp/Email.</div>
+            <div id="leadError" class="error-msg">❌ Submission failed. Please try again or call us directly at +91 98724 52167.</div>
+          </form>
+        </div>
       </div>
+
+      <!-- RIGHT: Share Your Feedback -->
+      <div id="feedback" class="dual-form-col fade-up">
+        <h2 class="section-title" style="font-size:1.7rem; margin-bottom:22px;">💬 Share Your Feedback</h2>
+        <div class="form-box compact-form">
+          <form id="feedbackForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Your Name *</label>
+                <input type="text" name="customer_name" id="fbName" placeholder="Full name" required>
+              </div>
+              <div class="form-group">
+                <label>Mobile / Email</label>
+                <input type="text" name="contact" id="fbContact" placeholder="+91 or email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Service Used</label>
+              <select name="service_used" id="fbService">
+                <option value="">-- Which service did you use? --</option>
+                <option>Aadhaar Services</option>
+                <option>PAN Card</option>
+                <option>Printing / Scanning</option>
+                <option>Loan / Credit Card</option>
+                <option>eGovernance</option>
+                <option>Money Transfer</option>
+                <option>MSME / Firm Registration</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Your Rating *</label>
+              <div class="star-rating" id="starRatingGroup">
+                <input type="radio" name="rating" id="s5" value="5 Stars"><label for="s5">★</label>
+                <input type="radio" name="rating" id="s4" value="4 Stars"><label for="s4">★</label>
+                <input type="radio" name="rating" id="s3" value="3 Stars"><label for="s3">★</label>
+                <input type="radio" name="rating" id="s2" value="2 Stars"><label for="s2">★</label>
+                <input type="radio" name="rating" id="s1" value="1 Star"><label for="s1">★</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Your Review *</label>
+              <textarea name="review" id="fbReview" rows="3" placeholder="Tell us about your experience..." required></textarea>
+            </div>
+            <div class="form-group" style="display:flex; align-items:center; gap:10px;">
+              <input type="checkbox" id="showReview" name="show_on_website" value="yes" checked style="width:16px;height:16px; accent-color:var(--gold);">
+              <label for="showReview" style="font-size:0.85rem; color:#999; margin:0;">Show my review on the website</label>
+            </div>
+            <button type="submit" class="submit-btn submit-btn-gold" style="margin-top:16px;">Submit Feedback ⭐</button>
+            <div id="feedbackSuccess" class="success-msg">⭐ Thank you for your feedback! It helps us serve you better.</div>
+            <div id="feedbackError" class="error-msg">❌ Submission failed. Please try again.</div>
+          </form>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1156,6 +1248,16 @@
   style.textContent = "@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }";
   document.head.appendChild(style);
 
+  // =================== TOGGLE SECTIONS ===================
+  function toggleSection(bodyId, btnId) {
+    const body = document.getElementById(bodyId);
+    const btn = document.getElementById(btnId);
+    if (!body || !btn) return;
+    const isCollapsed = body.classList.toggle('collapsed');
+    btn.classList.toggle('collapsed', isCollapsed);
+    btn.innerHTML = `<i class="chevron" style="${isCollapsed ? 'display:inline-block;transform:rotate(-90deg);' : ''}">▼</i> ${isCollapsed ? 'Expand' : 'Collapse'}`;
+  }
+
   // =================== SERVICES LIST ===================
   const servicesList = [
     { name: "Document Printing & Photocopy", icon: "fa-print", desc: "Black & white / colour prints", val: "Document Printing & Photocopy" },
@@ -1172,6 +1274,8 @@
     { name: "Loan Services", icon: "fa-hand-holding-usd", desc: "Home, personal & business", val: "Loan Services" },
     { name: "Credit Card Services", icon: "fa-credit-card", desc: "Apply with best rates", val: "Credit Card Application" },
     { name: "Money Transfer", icon: "fa-money-bill-transfer", desc: "NEFT, IMPS & AePS", val: "Money Transfer (AePS/NEFT)" },
+    { name: "MSME Registration", icon: "fa-industry", desc: "Udyam certificate online", val: "MSME Registration" },
+    { name: "Firm Registration", icon: "fa-building", desc: "Proprietorship, Partnership, LLP", val: "Firm Registration" },
   ];
 
   const grid = document.getElementById("services-grid");
@@ -1362,17 +1466,6 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); } });
   }, { threshold: 0.1 });
   document.querySelectorAll(".fade-up").forEach(el => fadeObs.observe(el));
-
-  // =================== FILE UPLOAD LABEL ===================
-  const fileInput = document.getElementById("uploadDoc");
-  if (fileInput) {
-    fileInput.addEventListener("change", function() {
-      const label = this.previousElementSibling;
-      if (this.files.length > 0) {
-        label.innerHTML = `<i class="fas fa-check-circle" style="color:var(--gold);"></i> ${this.files[0].name}`;
-      }
-    });
-  }
 </script>
 </body>
 </html>
